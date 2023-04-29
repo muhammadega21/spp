@@ -1,0 +1,84 @@
+.sidebar{
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    top: 50px;
+    height: 100%;
+    width: 50px;
+    background-color: #007bff;
+    transition: .3s;
+}
+
+.sidebar.active, .sidebar.active .menu ul li a{
+    width: 280px;
+}
+
+.sidebar.active .menu ul li a span{
+    opacity: 100%;
+}
+
+.sidebar.active .menu ul li .tooltips{
+    display: none;
+}
+
+.sidebar .menu ul{
+    list-style: none;
+}
+
+.sidebar .menu ul li a{
+    overflow: hidden;
+    display: block;
+    color: white;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    position: relative;
+    left: -32px;
+    transition: .3s;
+}
+
+.sidebar .menu ul li a span{
+    opacity: 0%;
+    transition: .3s;
+}
+
+.sidebar .menu ul li a:hover{
+    background-color: rgb(40, 144, 255);
+}
+
+.sidebar .menu ul li a.active{
+    background-color: rgb(40, 144, 255);
+}
+
+.sidebar .menu ul li a i{
+    width: 50px;
+    position: relative;
+    text-align: center;
+}
+
+.sidebar .menu .tooltips{
+    cursor: default;
+    transform: translateX(-20%);
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, .2);
+    display: block;
+    padding: 8px;
+    margin-top: -45px;
+    margin-left: 30px;
+    position: absolute;
+    width: 160px;
+    background-color: rgb(40, 144, 255);
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    opacity: 0;
+    visibility: hidden;
+    transition: 0.1s;
+}
+
+.sidebar .menu ul li:hover .tooltips{
+    visibility: visible;
+    transition: all .3s ease;
+    opacity: 100%;
+    transform: translateX(0%);
+}
+

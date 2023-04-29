@@ -1,0 +1,26 @@
+*{
+    box-sizing: border-box;
+    text-decoration: none !important;
+}
+
+body{
+    font-family: 'Poppins', sans-serif !important;
+    background-color: #eeeeee !important;
+}
+
+.bg{
+    z-index: 99;
+    visibility:hidden;  
+    background-color: rgba(0, 0, 0, .3);
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    opacity: 0;
+    transition: .5s;
+}
+.bg.active{
+    visibility: visible;
+    opacity: 100%;
+}

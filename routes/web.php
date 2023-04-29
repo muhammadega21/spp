@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PetugasController;
+use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +17,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Login
+Route::get('/', [LoginController::class, 'index'])->middleware('guest');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// register
+Route::get('/register', [LoginController::class, 'register'])->middleware('guest');
+Route::post('/register', [LoginController::class, 'store_register']);
+
+// Home
+Route::get('/dashboard', [Controller::class, 'index'])->middleware('auth');
+Route::get('/home', [Controller::class, 'index'])->middleware('auth');
+
+// Siswa
+Route::resource('/siswa', SiswaController::class);
+
+// Petugas
+Route::resource('/petugas', PetugasController::class);
