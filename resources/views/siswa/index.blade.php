@@ -11,39 +11,9 @@
                 <div class="table-siswa">
                   <div class="siswa-action mb-3 d-flex justify-content-between align-items-center">
                     <div class="button">
-                      <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#create_siswa"><i class="fa-solid fa-user-plus"></i><span class="ms-1">Tambah Siswa</span></button>
+                      <a href="{{ url('/siswa/create') }}" class="btn btn-primary"><i class="fa-solid fa-user-plus"></i><span class="ms-1">Tambah Siswa</span></a>
                       <a href="" class="btn btn-danger"><i class="fa-solid fa-file-pdf"></i><span class="ms-2">Print PDF</span></a>
                     </div>
-                    
-                    <!-- Create Siswa -->
-                    <div class="modal fade" id="create_siswa" tabindex="-1" aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5">Tambah Siswa</h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <form action="">
-                            <div class="modal-body">
-                              <div class="mb-3">
-                                <label for="email" class="form-label">Email</label>
-                                <input type="email" name="email" class="form-control" id="email" aria-describedby="emailHelp">
-                              </div>
-                              <div class="mb-3">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control" id="password">
-                              </div>
-                            </div>
-                            <div class="modal-footer">
-                              <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                              <button type="submit" class="btn btn-primary">Tambah</button>
-                            </div>
-                          </form>
-                        </div>
-                      </div>
-                    </div>
-                    {{-- end Create Siswa --}}
-
                     <div class="search-box">
                       <form action="">
                         <input type="text" name="search" id="search" placeholder="Search...">
@@ -51,6 +21,12 @@
                       </form>
                     </div>
                   </div>
+                  @if (session('success'))
+                    <div id="flash-message" class="alert alert-success">
+                      {{ session('success') }}
+                      <i id="close" class="fa-solid fa-xmark text-danger" data-bs-dismiss="alert" style="position: absolute; right: 15px; top: 15px; cursor: pointer; font-size: 20px"></i>
+                    </div>
+                  @endif
                     <table class="table table-bordered">
                         <thead class="table-secondary">
                           <tr>

@@ -19,13 +19,13 @@ body{
     margin-bottom: 2rem;
 }
 
-.form-input{
+.register .form-input{
     display: flex;
     flex-direction: column;
     margin-left: 10px;
 }
 
-.form-input input{
+.register .form-input input{
     width: 90%;
     height: 45px;
     padding-left: 15px;
@@ -36,11 +36,12 @@ body{
     color: rgba(0, 0, 0, .8);
 }
 
-.form-input input.is-invalid{
+.register .form-input input.is-invalid{
     box-shadow: 0px 0px 3px rgba(255, 0, 0, 0.5) !important;
+    border: 2px solid rgba(255, 0, 0, 0.5) !important;
 }
 
-.form-input input:focus, .form-input:valid{
+.register .form-input input:focus, .form-input:valid{
     border: 2px solid #007bff;
 }
 

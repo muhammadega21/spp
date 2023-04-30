@@ -17,12 +17,12 @@
                 </div>
                 <div class="user mx-3">
                    <div class="user-profiles">
-                       <img src="img/{{ auth()->user()->petugas->image }}" alt="{{ auth()->user()->petugas->username }}" style="cursor: pointer" id="user-profile">
+                       <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}" style="cursor: pointer" id="user-profile">
                    </div>
                    <div class="user-info">
                        <div class="top mx-3">
                                <div class="user-image mb-2">
-                                   <img src="img/{{ auth()->user()->petugas->image }}" alt="{{ auth()->user()->petugas->username }}">
+                                   <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}">
                                </div>
                                <span class="d-block">{{ auth()->user()->petugas->name }}</span>
                        </div>

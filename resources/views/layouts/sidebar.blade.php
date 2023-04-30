@@ -2,28 +2,28 @@
     <div class="menu">
         <ul>
             <li>
-                <a href="/dashboard"  class="{{ Request::is('dashboard*','home*') ? 'active' : '' }}">
+                <a href="{{ url('/dashboard') }}"  class="{{ Request::is('dashboard*','home*') ? 'active' : '' }}">
                     <i class="fa-solid fa-grid-2"></i>
                     <span class="link_name">Dashboard</span>
                 </a>
                 <span class="tooltips">Dashboard</span>
             </li>
             <li>
-                <a href="/siswa" class="{{ Request::is('siswa*') ? 'active' : '' }}">
+                <a href="{{ url('/siswa') }}" class="{{ Request::is('siswa*') ? 'active' : '' }}">
                     <i class="fa-solid fa-user"></i>
                     <span class="link_name">Data Siswa</span>
                 </a>
                 <span class="tooltips">Data Siswa</span>
             </li>
             <li>
-                <a href="/petugas" class="{{ Request::is('petugas*') ? 'active' : '' }}">
+                <a href="{{ url('/petugas') }}" class="{{ Request::is('petugas*') ? 'active' : '' }}">
                     <i class="fa-solid fa-user-tie"></i>
                     <span class="link_name">Data Petugas</span>
                 </a>
                 <span class="tooltips">Data Petugas</span>
             </li>
             <li>
-                <a href="/pembayaran" class="{{ Request::is('pembayaran*') ? 'active' : '' }}">
+                <a href="{{ url('/pembayaran') }}" class="{{ Request::is('pembayaran*') ? 'active' : '' }}">
                     <i class="fa-solid fa-coins"></i>
                     <span class="link_name">Data Pembayaran</span>
                 </a>
@@ -37,7 +37,7 @@
                 <span class="tooltips">Rwt. Pembayaran</span>
             </li>
             <li>
-                <a href="/kelas" class="{{ Request::is('kelas*') ? 'active' : '' }}">
+                <a href="{{ url('/kelas') }}" class="{{ Request::is('kelas*') ? 'active' : '' }}">
                     <i class="fa-solid fa-landmark"></i>
                     <span class="link_name">Data Kelas</span>
                 </a>

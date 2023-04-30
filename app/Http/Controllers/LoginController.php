@@ -45,17 +45,19 @@ class LoginController extends Controller
     public function store_register(Request $request)
     {
         $request->validate([
-            'nisn' => 'required|numeric|unique:siswas,nisn',
-            'nis' => 'required|numeric|unique:siswas,nis',
+            'nisn' => 'required|numeric|unique:siswas,nisn|digits:10',
+            'nis' => 'required|numeric|unique:siswas,nis|digits:8',
             'name' => 'required|max:30',
             'username' => 'required|max:8',
             'email' => 'required|email:dns|unique:users,email',
             'password' => 'required|min:4'
         ], [
+            'nisn.digits' => 'NISN Maximal 10 Angka',
             'nisn.required' => 'NISN Tidak Boleh Kosong!',
             'nisn.numeric' => 'NISN Harus Berupa Angka!',
             'nisn.unique' => 'NISN Sudah Ada!',
 
+            'nis.digits' => 'NISN Maximal 8 Angka',
             'nis.required' => 'NIS Tidak Boleh Kosong!',
             'nis.numeric' => 'NIS Harus Berupa Angka!',
             'nis.unique' => 'NIS Sudah Ada!',

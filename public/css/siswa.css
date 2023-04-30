@@ -3,6 +3,8 @@
     min-width: 900px;
 }
 
+/* index */
+
 .siswa .title{
     display: flex;
     justify-content: space-between;
@@ -52,4 +54,32 @@
 .siswa .table-siswa .siswa-action .search-box button:hover{
     background: rgba(0, 123, 255, .8);
     transform: scale(1.1);
+}
+
+/* create siswa */
+
+.siswa .create-siswa{
+    padding: 10px;
+    background: #fff;
+    border-radius: 10px;
+}
+
+.siswa .create-siswa .form-input input{
+    box-shadow: none !important;
+    border: 1px solid rgba(0, 0, 0, .2);
+    background: transparent;
+    color: rgba(0, 0, 0, .8);
+}
+
+.siswa .create-siswa .form-input input.is-invalid{
+    box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.5) !important;
+    border: 2px solid rgba(255, 30, 30, 0.5) !important;
+}
+
+.siswa .create-siswa .form-input input:focus, .login .form-input:valid{
+    border: 2px solid #007bff;
+}
+
+.siswa .create-siswa .form-input.is-invalid input:focus, .login .form-input:valid{
+    border: 2px solid rgba(255, 0, 0, 0.5) !important;
 }

@@ -32,7 +32,8 @@ Route::get('/dashboard', [Controller::class, 'index'])->middleware('auth');
 Route::get('/home', [Controller::class, 'index'])->middleware('auth');
 
 // Siswa
-Route::resource('/siswa', SiswaController::class);
+Route::resource('/siswa', SiswaController::class)->middleware('auth');
+Route::resource('/siswa/posts', SiswaController::class)->middleware('auth');
 
 // Petugas
 Route::resource('/petugas', PetugasController::class);
