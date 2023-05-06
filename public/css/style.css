@@ -3,9 +3,17 @@
     text-decoration: none !important;
 }
 
+html {
+    height: 100% !important;
+}
+
+
 body{
     font-family: 'Poppins', sans-serif !important;
     background-color: #eeeeee !important;
+    min-height: 100% !important;
+    position: relative !important;
+    padding-bottom: 5rem !important;
 }
 
 .bg{

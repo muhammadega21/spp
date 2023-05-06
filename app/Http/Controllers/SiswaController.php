@@ -97,7 +97,10 @@ class SiswaController extends Controller
      */
     public function edit(siswa $siswa)
     {
-        //
+        return view('siswa.edit', [
+            'title' => 'Edit Siswa',
+            'siswa' => $siswa
+        ]);
     }
 
     /**
@@ -113,6 +116,8 @@ class SiswaController extends Controller
      */
     public function destroy(siswa $siswa)
     {
-        //
+        siswa::destroy($siswa->id);
+        User::destroy($siswa->user->id);
+        return redirect('/siswa')->with('success', 'Berhasil Menghapus Data');
     }
 }

@@ -48,9 +48,11 @@
                             <td>{{ $siswa->user->email }}</td>
                             <td>
                                 <a href="" class="badge bg-primary btn-sm"><i class="fa-solid fa-eye text-light"></i></a>
-                                <a href="" class="badge bg-warning btn-sm"><i class="fa-solid fa-pen-to-square text-light"></i></a>
-                                <form action="" class="d-inline">
-                                    <button class="badge bg-danger border-0"><i class="fa-solid fa-trash"></i></button>
+                                <a href="{{ url('/siswa/'. $siswa->id.'/edit') }}" class="badge bg-warning btn-sm"><i class="fa-solid fa-pen-to-square text-light"></i></a>
+                                <form action="{{ url('/siswa/'. $siswa->id) }}" method="POST" class="d-inline">
+                                  @method('delete')
+                                  @csrf
+                                    <button class="badge bg-danger border-0" onclick="return confirm('Hapus Data?')"><i class="fa-solid fa-trash"></i></button>
                                 </form>
                             </td>
                           </tr>

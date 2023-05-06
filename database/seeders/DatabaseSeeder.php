@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
         User::create([
             'siswa_id' => '1',
             'email' => 'dermawane988@gmail.com',
-            'password' => bcrypt('password')
+            'password' => bcrypt('egadermawan')
         ]);
 
         Petugas::create([
