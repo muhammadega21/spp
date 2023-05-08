@@ -20,4 +20,12 @@ class siswa extends Model
     {
         return $this->hasMany(Pembayaran::class);
     }
+    public function Kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+    public function jurusan()
+    {
+        return $this->belongsTo(Jurusan::class);
+    }
 }

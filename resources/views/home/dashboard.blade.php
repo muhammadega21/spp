@@ -12,28 +12,28 @@
                     <div class="card-main">
                         <div class="card-head d-flex justify-content-sm-between justify-content-xl-evenly flex-wrap bg-light">
                             <div class="card col-sm-3 mb-3 bg-success" style="width: 280px">
-                                    <a href="#">
+                                    <a href="{{ url('/siswa') }}">
                                         <span class="fs-4">{{ $jml_siswa }}</span>
                                         <span>Jumlah Siswa</span>
                                         <i class="fa-solid fa-user-group"></i>
                                     </a>
                             </div>
                             <div class="card col-sm-3 mb-3 bg-secondary" style="width: 280px">
-                                    <a href="">
+                                    <a href="{{ url('/kelas') }}">
                                         <span class="fs-4">{{ $jml_kelas }}</span>
                                         <span>Jumlah Kelas</span>
                                         <i class="fa-solid fa-landmark"></i>
                                     </a>
                             </div>
                             <div class="card col-sm-3 mb-3" style="width: 280px; background-color: #10a9bd">
-                                    <a href="">
+                                    <a href="{{ url('/jurusan') }}">
                                         <span class="fs-4">{{ $jml_jurusan }}</span>
                                         <span>Jumlah Jurusan</span>
                                         <i class="fa-solid fa-calendar-lines"></i>
                                     </a>
                             </div>
                             <div class="card col-sm-3 mb-3" style="width: 280px; background-color: #135c31">
-                                <a href="">
+                                <a href="{{ url('/petugas') }}">
                                     <span class="fs-4">{{ $jml_petugas }}</span>
                                     <span>Jumlah Petugas</span>
                                     <i class="fa-solid fa-user-tie"></i>
@@ -41,9 +41,6 @@
                             </div>
                             <div class="card col-sm-3 mb-3" style="width: 280px; background-color: #b3b623">
                                 <a href="">
-                                    @php
-                                        $tgl1    = "2018-01-23";
-                                    @endphp
                                     <span class="fs-4">Rp {{ number_format($total_bulanan, 0, ',', '.') }}</span>
                                     <span>Transaksi Bulan {{ $tgl }}</span>
                                     <i class="fa-solid fa-circle-dollar"></i>

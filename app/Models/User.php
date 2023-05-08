@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function siswa()
     {
-        return $this->hasOne(Siswa::class, 'siswa_id');
+        return $this->hasMany(Siswa::class);
     }
     public function petugas()
     {

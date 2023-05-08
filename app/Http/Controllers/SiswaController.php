@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\jurusan;
+use App\Models\kelas;
 use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -26,7 +28,9 @@ class SiswaController extends Controller
     {
         return view('siswa.create', [
             'title' => 'Tambah Siswa',
-            'siswa' => Siswa::pluck('id')->last()
+            'siswa' => Siswa::pluck('id')->last(),
+            'kelas' => kelas::get(),
+            'jurusan' => jurusan::get()
         ]);
     }
 
@@ -37,11 +41,11 @@ class SiswaController extends Controller
     {
         $request->validate([
             'nisn' => 'required|numeric|unique:siswas,nisn|digits:10',
-            'nis' => 'required|numeric|unique:siswas,nis|digits:8',
+            'nis' => 'required|numeric|unique:siswas,nis',
             'email' => 'required|email:dns|unique:users,email',
             'name' => 'required|max:30',
             'username' => 'required|max:8',
-            'password' => 'required|min:4'
+            'password' => 'required|min:4',
         ], [
             'nisn.digits' => 'NISN Maximal 10 Angka',
             'nisn.required' => 'NISN Tidak Boleh Kosong!',
@@ -78,7 +82,9 @@ class SiswaController extends Controller
             'nisn' => $request['nisn'],
             'nis' => $request['nis'],
             'name' => $request['name'],
-            'username' => $request['username']
+            'username' => $request['username'],
+            'kelas_id' => $request['kelas_id'],
+            'jurusan_id' => $request['jurusan_id'],
         ]);
 
         return redirect('/siswa')->with('success', 'Berhasil Menambah Siswa');
@@ -99,16 +105,101 @@ class SiswaController extends Controller
     {
         return view('siswa.edit', [
             'title' => 'Edit Siswa',
-            'siswa' => $siswa
+            'siswa' => $siswa,
+            'kelas' => kelas::get(),
+            'jurusan' => jurusan::get()
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, siswa $siswa)
+    public function update(Request $request, $siswa)
     {
-        //
+        $siswas = siswa::find($siswa);
+        $validasi = [
+            'name' => 'required|max:30',
+            'username' => 'required|max:8',
+            'password' => 'min:4',
+            'image' => 'image|file|max:5120'
+        ];
+
+        if ($request->nisn != $siswas->nisn) {
+            $validasi['nisn'] = 'required|numeric|unique:siswas,nisn|digits:10';
+        }
+        if ($request->nis != $siswas->nis) {
+            $validasi['nis'] = 'required|numeric|unique:siswas,nis|digits:8';
+        }
+        if ($request->email != $siswas->user->email) {
+            $validasi['email'] = 'required|email|unique:users,email';
+        }
+
+        if ($siswas == 'user.png') {
+
+            if ($request->file('image')) {
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = 'user.png';
+            }
+        } else {
+            if ($request->file('image')) {
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = $siswas->image;
+            }
+        }
+
+        $validatedData = $request->validate(
+            $validasi,
+            [
+                'nisn.digits' => 'NISN Maximal 10 Angka',
+                'nisn.required' => 'NISN Tidak Boleh Kosong!',
+                'nisn.numeric' => 'NISN Harus Berupa Angka!',
+                'nisn.unique' => 'NISN Sudah Ada!',
+
+                'nis.digits' => 'NISN Maximal 8 Angka',
+                'nis.required' => 'NIS Tidak Boleh Kosong!',
+                'nis.numeric' => 'NIS Harus Berupa Angka!',
+                'nis.unique' => 'NIS Sudah Ada!',
+
+                'name.required' => 'Nama Tidak Boleh Kosong!',
+                'name.max' => 'Max 30 Character!',
+
+                'username.required' => 'Username Tidak Boleh Kosong!',
+                'username.max' => 'Max 8 Character!',
+
+                'email.required' => 'Email Tidak Boleh Kosong!',
+                'email.email' => 'Email Harus Berupa Email Yang Benar!',
+                'email.unique' => 'Email Sudah Ada!',
+
+                'password.required' => 'Password Tidak Boleh Kosong!',
+                'password.min' => 'Password Harus Minimal 4 Huruf/Angka!',
+
+                'image.image' => 'File Harus Berformat Gambar!',
+                'image.max' => 'Size Gambar Tidak Boleh Lebih Dari 5mb!'
+            ]
+        );
+
+
+
+        siswa::where('id', $siswas->id)
+            ->update([
+                'id' => $request['id'],
+                'nisn' => $request['nisn'],
+                'nis' => $request['nis'],
+                'name' => $request['name'],
+                'username' => $request['username'],
+                'kelas_id' => $request['kelas_id'],
+                'jurusan_id' => $request['jurusan_id'],
+                'image' => $image
+            ]);
+        User::where('siswa_id', $siswas->id)
+            ->update([
+                'siswa_id' => $request['id'],
+                'email' => $request['email'],
+            ]);
+
+        return redirect('/siswa')->with('success', 'Berhasil Update Data Profile');
     }
 
     /**

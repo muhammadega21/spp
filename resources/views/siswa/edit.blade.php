@@ -10,7 +10,8 @@
                 <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/siswa">Data Siswa</a> > Tambah Siswa</span>
             </div>
                 <div class="create-siswa">
-                    <form action="/siswa/posts" method="POST">
+                    <form action="{{ url('/siswa/posts/'.$siswa->id) }}" method="POST" enctype="multipart/form-data">
+                        @method('put')
                         @csrf
                         <input type="text" name="id" value="{{ $siswa->id }}" hidden>
                         <div class="form-input d-flex flex-wrap p-1">
@@ -31,6 +32,34 @@
                                         {{ $message }}
                                     </div>
                                 @enderror
+                            </div>
+                        </div>
+                        <div class="form-input d-flex flex-wrap p-1">
+                            <div class="mb-3 col-6 pe-2">
+                                <label class="form-label">Kelas</label>
+                                <select class="form-select" name="kelas_id">
+                                    <option selected>-- Pilih Kelas --</option>
+                                    @foreach ($kelas as $kelas)
+                                        @if (old('kelas_id', $siswa->kelas_id) == $kelas->id)
+                                            <option value="{{ $kelas->id }}" selected>{{ $kelas->nama_kelas }}</option>
+                                        @else
+                                            <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                        @endif     
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-3 col-6 ps-2">
+                                <label class="form-label">Jurusan</label>
+                                <select class="form-select" name="jurusan_id">
+                                    <option selected>-- Pilih Jurusan --</option>
+                                    @foreach ($jurusan as $jurusan)
+                                    @if (old('jurusan_id', $siswa->jurusan_id) == $jurusan->id)
+                                            <option value="{{ $jurusan->id }}" selected>{{ $jurusan->nama_jurusan }}</option>
+                                        @else
+                                            <option value="{{ $jurusan->id }}">{{ $jurusan->nama_jurusan }}</option>
+                                        @endif     
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                         <div class="form-input d-flex flex-wra p-1">
@@ -63,7 +92,6 @@
                                     </div>
                                 @enderror
                             </div>
-                            @if ($siswa->user->password == Hash::check('password', $siswa->user->password))
                             <div class="mb-3 col-6 ps-2">
                                 <label for="password" class="form-label">Password</label>
                                 <div class="input d-flex">
@@ -71,20 +99,11 @@
                                     <a href="" class="btn btn-warning ms-2 text-light"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                             </div>
-                            @else
-                            <div class="mb-3 col-6 ps-2">
-                                <label for="password" class="form-label">Password</label>
-                                <div class="input d-flex">
-                                    <input type="text" name="password" class="form-control" id="password" value="Password Telah Diubah Oleh User" style="color: rgb(0, 0, 0,.3);" disabled>
-                                </div>
-                            </div>
-                            @endif
-                            
                         </div>
                         <div class="form-input d-flex flex-wra p-1">
                             <div class="mb-3 col-6 pe-2">
                                 <label for="alamat" class="form-label">Alamat</label>
-                                <input type="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" id="alamat" value="{{ old('alamat',$siswa->name) }}" placeholder="Masukkan Alamat">
+                                <input type="alamat" name="alamat" class="form-control @error('alamat') is-invalid @enderror" id="alamat" value="{{ old('alamat',$siswa->alamat) }}" placeholder="Masukkan Alamat">
                                 @error('alamat')
                                     <div class="invalid-feedback">
                                         {{ $message }}
@@ -105,14 +124,18 @@
                             <div class="mb-3 col-6 pe-2">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Foto Profile</label>
-                                    <input class="form-control" type="file" id="image" name="image">
-                                  </div>
-                                  
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                                    @error('image')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
+                                </div>
                             </div>
                         </div>
                         <div class="button ps-1 pb-1 d-flex justify-content-end me-1">
                             <a href="/siswa" class="btn btn-danger">Batal</a>
-                            <button type="submit" class="btn btn-primary ms-1">Tambah</button>
+                            <button type="submit" class="btn btn-primary ms-1">Update</button>
                         </div>
                     </form>
                 </div>

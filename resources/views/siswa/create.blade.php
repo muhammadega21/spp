@@ -10,7 +10,7 @@
                 <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/siswa">Data Siswa</a> > Tambah Siswa</span>
             </div>
                 <div class="create-siswa">
-                    <form action="/siswa/posts" method="POST">
+                    <form action="{{ url('/siswa/posts') }}" method="POST">
                         @csrf
                         <input type="text" name="id" value="{{ $siswa + 1 }}" hidden>
                         <div class="form-input d-flex flex-wrap p-1">

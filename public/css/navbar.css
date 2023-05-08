@@ -44,6 +44,7 @@
     width: 30px;
     overflow: hidden;
     border-radius: 50%;
+    transition: all .15s ease;
 }
 
 .nav .right .user .user-profiles img{
@@ -51,6 +52,10 @@
     width: 100%;
     object-fit: cover;
     object-position: center center;
+}
+
+.nav .right .user .user-profiles:hover{
+    transform: scale(1.1);
 }
 
 .nav .right .user .user-info{
@@ -67,11 +72,15 @@
     transition: .1s;
 }
 
-.nav .right .user .user-info.active{
+.nav .right .user.active .user-info{
     visibility: visible;
     opacity: 100%;
     transform: translateX(0%);
     transition: all .2s ease;
+}
+
+.nav .right .user.active .user-profiles{
+    transform: scale(1.1);
 }
 
 .nav .right .user .user-info .top{
