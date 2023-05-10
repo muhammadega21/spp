@@ -7,6 +7,7 @@ use App\Models\kelas;
 use App\Models\siswa;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class SiswaController extends Controller
 {
@@ -29,8 +30,8 @@ class SiswaController extends Controller
         return view('siswa.create', [
             'title' => 'Tambah Siswa',
             'siswa' => Siswa::pluck('id')->last(),
-            'kelas' => kelas::get(),
-            'jurusan' => jurusan::get()
+            'kelas' => kelas::all(),
+            'jurusan' => jurusan::all()
         ]);
     }
 
@@ -106,8 +107,8 @@ class SiswaController extends Controller
         return view('siswa.edit', [
             'title' => 'Edit Siswa',
             'siswa' => $siswa,
-            'kelas' => kelas::get(),
-            'jurusan' => jurusan::get()
+            'kelas' => kelas::all(),
+            'jurusan' => jurusan::all()
         ]);
     }
 
@@ -137,12 +138,18 @@ class SiswaController extends Controller
         if ($siswas == 'user.png') {
 
             if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
                 $image = $validatedData['image'] = $request->file('image')->store('images');
             } else {
                 $image = 'user.png';
             }
         } else {
             if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
                 $image = $validatedData['image'] = $request->file('image')->store('images');
             } else {
                 $image = $siswas->image;
@@ -175,7 +182,7 @@ class SiswaController extends Controller
                 'password.required' => 'Password Tidak Boleh Kosong!',
                 'password.min' => 'Password Harus Minimal 4 Huruf/Angka!',
 
-                'image.image' => 'File Harus Berformat Gambar!',
+                'image.image' => 'File Harus Berupa Gambar!',
                 'image.max' => 'Size Gambar Tidak Boleh Lebih Dari 5mb!'
             ]
         );

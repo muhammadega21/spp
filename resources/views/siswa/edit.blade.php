@@ -124,7 +124,17 @@
                             <div class="mb-3 col-6 pe-2">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Foto Profile</label>
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image">
+                                    <input type="hidden" name="oldImage" value="{{ $siswa->image }}">
+                                    @if ($siswa->image)
+                                        @if ($siswa->image == 'user.png')
+                                            <img src="{{ url('img/' .$siswa->image) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @else
+                                            <img src="{{ url(asset('storage/' .$siswa->image)) }}" class="img-preview img-fluid mb-3 col-sm-5 d-block">
+                                        @endif
+                                    @else
+                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                    @endif
+                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
                                     @error('image')
                                     <div class="invalid-feedback">
                                         {{ $message }}

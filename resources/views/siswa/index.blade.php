@@ -49,7 +49,6 @@
                             <td>
                                 <a href="" class="badge bg-primary btn-sm"><i class="fa-solid fa-eye text-light"></i></a>
                                 <form action="{{ url('/siswa/'. $siswa->id.'/edit') }}" class="d-inline">
-                                  {{-- <a href="{{ url('/siswa/'. $siswa->id.'/edit') }}" class="badge bg-warning btn-sm"><i class="fa-solid fa-pen-to-square text-light"></i></a> --}}
                                   <button class="badge bg-warning btn-sm border-0"><i class="fa-solid fa-pen-to-square text-light"></i></button>
                                 </form>
                                 <form action="{{ url('/siswa/'. $siswa->id) }}" method="POST" class="d-inline">

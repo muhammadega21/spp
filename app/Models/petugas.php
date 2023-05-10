@@ -13,6 +13,6 @@ class petugas extends Model
 
     public function user()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class, 'petugas_id');
     }
 }

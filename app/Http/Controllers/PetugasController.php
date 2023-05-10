@@ -13,7 +13,8 @@ class PetugasController extends Controller
     public function index()
     {
         return view('petugas.index', [
-            'title' => 'Daftar Petugas'
+            'title' => 'Daftar Petugas',
+            'petugas' => petugas::all(),
         ]);
     }
 

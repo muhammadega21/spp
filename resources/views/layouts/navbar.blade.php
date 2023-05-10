@@ -41,12 +41,20 @@
                 </div>
                 <div class="user mx-3">
                    <div class="user-profiles">
-                       <img src="img/{{ auth()->user()->siswa->image }}" alt="{{ auth()->user()->siswa->username }}" style="cursor: pointer" id="user-profile">
+                    @if (auth()->user()->siswa->image == 'user.png')
+                    <img src="{{ url('img/'.auth()->user()->siswa->image) }}" alt="{{ auth()->user()->siswa->username }}" style="cursor: pointer" id="user-profile">
+                    @else
+                    <img src="{{ url(asset('storage/' . auth()->user()->siswa->image)) }}" alt="{{ auth()->user()->siswa->username }}" style="cursor: pointer" id="user-profile">
+                    @endif
                    </div>
                    <div class="user-info">
                        <div class="top mx-3">
                                <div class="user-image mb-2">
-                                   <img src="img/{{ auth()->user()->siswa->image }}" alt="{{ auth()->user()->siswa->username }}">
+                                @if (auth()->user()->siswa->image == 'user.png')
+                                <img src="{{ url('img/'.auth()->user()->siswa->image) }}" alt="{{ auth()->user()->siswa->username }}">
+                                @else
+                                <img src="{{ url(asset('storage/' .auth()->user()->siswa->image)) }}" alt="{{ auth()->user()->siswa->username }}">
+                                @endif
                                </div>
                                <span class="d-block">{{ auth()->user()->siswa->name }}</span>
                        </div>
