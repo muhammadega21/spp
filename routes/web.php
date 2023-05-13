@@ -36,4 +36,5 @@ Route::resource('/siswa', SiswaController::class)->middleware('auth');
 Route::resource('/siswa/posts', SiswaController::class)->middleware('auth');
 
 // Petugas
-Route::resource('/petugas', PetugasController::class);
+Route::resource('/petugas', PetugasController::class)->middleware('auth');
+Route::resource('/petugas/posts', PetugasController::class)->middleware('auth');

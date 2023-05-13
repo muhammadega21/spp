@@ -17,12 +17,20 @@
                 </div>
                 <div class="user mx-3">
                    <div class="user-profiles">
-                       <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}" style="cursor: pointer" id="user-profile">
+                    @if (auth()->user()->petugas->image == 'user.png')
+                    <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}" style="cursor: pointer" id="user-profile">
+                    @else
+                    <img src="{{ url(asset('storage/' . auth()->user()->petugas->image)) }}" alt="{{ auth()->user()->petugas->username }}" style="cursor: pointer" id="user-profile">
+                    @endif
                    </div>
                    <div class="user-info">
                        <div class="top mx-3">
                                <div class="user-image mb-2">
-                                   <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}">
+                                @if (auth()->user()->petugas->image == 'user.png')
+                                <img src="{{ url('img/'.auth()->user()->petugas->image) }}" alt="{{ auth()->user()->petugas->username }}">
+                                @else
+                                <img src="{{ url(asset('storage/' .auth()->user()->petugas->image)) }}" alt="{{ auth()->user()->petugas->username }}">
+                                @endif
                                </div>
                                <span class="d-block">{{ auth()->user()->petugas->name }}</span>
                        </div>

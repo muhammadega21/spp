@@ -54,7 +54,7 @@
                                 <form action="{{ url('/siswa/'. $siswa->id) }}" method="POST" class="d-inline">
                                   @method('delete')
                                   @csrf
-                                    <button class="badge bg-danger border-0" onclick="return confirm('Hapus Data?')"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="badge bg-danger border-0" {{ $siswa->id == 1 ? 'disabled' : '' }} onclick="return confirm('Hapus Data?')"><i class="fa-solid fa-trash"></i></button>
                                 </form>
                             </td>
                           </tr>

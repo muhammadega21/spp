@@ -41,12 +41,20 @@
                         </thead>
                         <tbody>
                           @foreach ($petugas as $petugas)    
+                            @php
+                              if ($petugas->user->level == 1) {
+                                $level = 'Administrator';
+                              }
+                              if ($petugas->user->level == 2) {
+                                $level = 'Petugas';
+                              }
+                            @endphp
                           <tr>
                             <th scope="row">{{ $loop->iteration }}</th>
                             <td>{{ $petugas->name }}</td>
                             <td>{{ $petugas->username }}</td>
                             <td>{{ $petugas->user->email }}</td>
-                            <td>{{ $petugas->user->level }}</td>
+                            <td>{{ $level }}</td>
                             <td>
                                 <a href="" class="badge bg-primary btn-sm"><i class="fa-solid fa-eye text-light"></i></a>
                                 <form action="{{ url('/petugas/'. $petugas->id.'/edit') }}" class="d-inline">
@@ -55,7 +63,7 @@
                                 <form action="{{ url('/petugas/'. $petugas->id) }}" method="POST" class="d-inline">
                                   @method('delete')
                                   @csrf
-                                    <button class="badge bg-danger border-0" onclick="return confirm('Hapus Data?')"><i class="fa-solid fa-trash"></i></button>
+                                    <button class="badge bg-danger border-0" {{ $petugas->id == 1 ? 'disabled' : '' }} onclick="return confirm('Hapus Data?')"><i class="fa-solid fa-trash"></i></button>
                                 </form>
                             </td>
                           </tr>

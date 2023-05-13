@@ -7,7 +7,7 @@
             <div class="siswa">
             <div class="title">
                 <h5 class="d-block my-auto">Tambah Siswa</h5>   
-                <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/siswa">Data Siswa</a> > Tambah Siswa</span>
+                <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/siswa">Data Siswa</a> > Edit Siswa</span>
             </div>
                 <div class="create-siswa">
                     <form action="{{ url('/siswa/posts/'.$siswa->id) }}" method="POST" enctype="multipart/form-data">
@@ -93,9 +93,9 @@
                                 @enderror
                             </div>
                             <div class="mb-3 col-6 ps-2">
-                                <label for="password" class="form-label">Password</label>
+                                <label for="pass" class="form-label">Password</label>
                                 <div class="input d-flex">
-                                    <input type="text" name="password" class="form-control" id="password" value="Ganti Password" style="color: rgb(0, 0, 0,.3);" disabled>
+                                    <input type="text" name="password" class="form-control" id="pass" value="Ganti Password" style="color: rgb(0, 0, 0,.3);" disabled>
                                     <a href="" class="btn btn-warning ms-2 text-light"><i class="fa-solid fa-pen-to-square"></i></a>
                                 </div>
                             </div>

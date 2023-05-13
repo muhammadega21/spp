@@ -64,22 +64,27 @@
     border-radius: 10px;
 }
 
-.siswa .create-siswa .form-input input:not(#password){
-    box-shadow: none !important;
+.siswa .create-siswa .form-input input:not(#pass,#image){
+    
     border: 1px solid rgba(0, 0, 0, .2);
     background: transparent;
     color: rgba(0, 0, 0, .8);
 }
 
-.siswa .create-siswa .form-input input.is-invalid{
-    box-shadow: 0px 0px 5px rgba(255, 0, 0, 0.5) !important;
-    border: 2px solid rgba(255, 30, 30, 0.5) !important;
+.siswa .create-siswa .form-input input.is-invalid:not(#pass,#image){
+    box-shadow: 0px 0px 8px rgba(255, 0, 0, 0.7) !important;
+    border: 2px solid rgba(255, 30, 30, 0.4) !important;
 }
 
-.siswa .create-siswa .form-input input:focus, .login .form-input:valid{
-    border: 2px solid #007bff;
+.siswa .create-siswa .form-input input:focus:not(#pass,#image), .siswa .create-siswa .form-input:valid:not(#pass,#image){
+    box-shadow:0px 0px 8px rgba(0, 123, 255,.7) !important;
+    border: 2px solid rgba(0, 123, 255,.4) !important;
 }
 
-.siswa .create-siswa .form-input.is-invalid input:focus, .login .form-input:valid{
+.siswa .create-siswa .form-input.is-invalid input:focus:not(#pass,#image), .siswa .create-siswa .form-input:valid:not(#pass,#image){
     border: 2px solid rgba(255, 0, 0, 0.5) !important;
+}
+
+.siswa .create-siswa .form-input .img-preview{
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .1);
 }

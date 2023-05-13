@@ -214,6 +214,9 @@ class SiswaController extends Controller
      */
     public function destroy(siswa $siswa)
     {
+        if ($siswa->image) {
+            Storage::delete($siswa->image);
+        }
         siswa::destroy($siswa->id);
         User::destroy($siswa->user->id);
         return redirect('/siswa')->with('success', 'Berhasil Menghapus Data');
