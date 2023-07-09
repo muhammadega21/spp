@@ -6,10 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPP | {{ $title }}</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/register.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <link rel="stylesheet" href="{{ url("css/style.css") }}">
+    <link rel="stylesheet" href="{{ url("css/register.css") }}">
+    <link rel="stylesheet" href="{{ url("bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url("fontawesome/css/all.min.css") }}">
+    <script src="{{ url("js/jquery-3.6.4.min.js") }}"></script>
   
 </head>
 
@@ -24,6 +25,7 @@
                                 @csrf
                                 {{-- siswa_id --}}
                                 <input type="text" name="id" value="{{ $siswa + 1 }}" hidden>
+                                <input type="text" name="tahun_ajaran" value="{{ date("Y") }}" hidden>
                                 <div class="col-sm-12 d-block d-sm-flex justify-content-between">
                                     <div class="form-input col-sm-6 mb-1">
                                         <div class="mb-1">
@@ -88,7 +90,10 @@
                                         <div class="mb-1">
                                             <label for="password">Password</label>
                                         </div>
-                                        <input type="password" name="password" id="password" placeholder="Password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" required>
+                                        <div class="inputPassword">
+                                            <input type="password" name="password" id="password" class="form-control @error('password') is-invalid @enderror" value="{{ old('password') }}" placeholder="Password" required>
+                                            <i id="showPassword" class="fa-solid fa-eye-slash"></i>
+                                        </div>
                                         @error('password')
                                             <div class="invalid-feedback ">
                                                 {{ $message }}
@@ -96,6 +101,7 @@
                                         @enderror
                                     </div>
                                 </div>
+                                <div class="input-pembayaran"></div>
                                 <div class="login">
                                     <input type="submit" class="submit" value="Register">
                                 </div>
@@ -109,6 +115,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ url("js/script.js") }}"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 

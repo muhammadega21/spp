@@ -36,8 +36,12 @@
                        </div>
                        <div class="border border-bottom-1 mx-3 my-2"></div>
                        <div class="bottom">
-                               <a href=""><i class="fa-solid fa-user-pen edit-profile bg-warning"></i></a>
-                               <a href="/logout"><i class="fa-solid fa-right-from-bracket logout bg-danger"></i></a>
+                                <form action="{{ url('/petugas/'. auth()->user()->petugas->id.'/edit') }}" class="d-inline">
+                                    <button class="button btn-warning border-0 rounded-circle p-0 bg-transparent"><i class="fa-solid fa-user-pen edit-profile bg-warning"></i></button>
+                                </form>
+                                <form action="{{ url('/logout') }}" class="d-inline">
+                                    <button class="button btn-warning border-0 rounded-circle p-0 bg-transparent"><i class="fa-solid fa-right-from-bracket logout bg-danger"></i></button>
+                                </form>
                        </div>
                    </div>
                 </div>
@@ -68,8 +72,12 @@
                        </div>
                        <div class="border border-bottom-1 mx-3 my-2"></div>
                        <div class="bottom">
-                               <a href=""><i class="fa-solid fa-user-pen edit-profile bg-warning"></i></a>
-                               <a href="/logout"><i class="fa-solid fa-right-from-bracket logout bg-danger"></i></a>
+                        <form action="{{ url('/siswa/'. auth()->user()->siswa->id.'/edit') }}" class="d-inline">
+                            <button class="button btn-warning border-0 rounded-circle p-0 bg-transparent"><i class="fa-solid fa-user-pen edit-profile bg-warning"></i></button>
+                        </form>
+                        <form action="{{ url('/logout') }}" class="d-inline">
+                            <button class="button btn-warning border-0 rounded-circle p-0 bg-transparent"><i class="fa-solid fa-right-from-bracket logout bg-danger"></i></button>
+                        </form>
                        </div>
                    </div>
                 </div>

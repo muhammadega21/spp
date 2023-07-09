@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\pembayaran;
 use App\Models\Siswa;
+use App\Models\spp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -52,12 +54,12 @@ class LoginController extends Controller
             'email' => 'required|email:dns|unique:users,email',
             'password' => 'required|min:4'
         ], [
-            'nisn.digits' => 'NISN Maximal 10 Angka',
+            'nisn.digits' => 'NISN Anda Salah!',
             'nisn.required' => 'NISN Tidak Boleh Kosong!',
             'nisn.numeric' => 'NISN Harus Berupa Angka!',
             'nisn.unique' => 'NISN Sudah Ada!',
 
-            'nis.digits' => 'NISN Maximal 8 Angka',
+            'nis.digits' => 'NIS Anda Salah!',
             'nis.required' => 'NIS Tidak Boleh Kosong!',
             'nis.numeric' => 'NIS Harus Berupa Angka!',
             'nis.unique' => 'NIS Sudah Ada!',
@@ -84,11 +86,22 @@ class LoginController extends Controller
 
         Siswa::create([
             'id' => $request['id'],
+            'tahun_ajaran' => $request['tahun_ajaran'],
             'nisn' => $request['nisn'],
             'nis' => $request['nis'],
             'name' => $request['name'],
             'username' => $request['username']
         ]);
+
+        // for ($i=1; $i < 13; $i++) { 
+        //     pembayaran::create([
+        //         'siswa_id' => $request['id'],
+        //         'spp_id' => spp::get('id')->last()->id,
+        //         'bulan_id' => $i,
+        //         'bayar' => 0,
+        //         'tahun'  => spp::get('tahun')->last()->tahun
+        //     ]);
+        // }
 
         return redirect('/login')->with('success', 'Berhasil Registrasi! Silahkan Login');
     }

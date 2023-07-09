@@ -46,7 +46,10 @@
                             </div>
                             <div class="mb-3 col-6 ps-2">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="{{ old('password','password') }}" placeholder="Masukkan Password">
+                                <div class="inputPassword">
+                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="{{ old('password','password') }}" placeholder="Masukkan Password">
+                                    <i id="showPassword" class="fa-solid fa-eye-slash"></i>
+                                </div>
                                 @error('password')
                                     <div class="invalid-feedback">
                                         {{ $message }}

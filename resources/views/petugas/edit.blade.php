@@ -6,7 +6,7 @@
         <div class="col-9 col-sm-10 col-lg-11">
             <div class="siswa">
             <div class="title">
-                <h5 class="d-block my-auto">Tambah Siswa</h5>   
+                <h5 class="d-block my-auto">Edit Petugas</h5>   
                 <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/petugas">Data Petugas</a> > Edit Siswa</span>
             </div>
                 <div class="create-siswa">
@@ -78,7 +78,7 @@
                                     <label for="image" class="form-label">Foto Profile</label>
                                     <input class="form-control mb-3 @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
                                     @error('image')
-                                    <div class="invalid-feedback">
+                                    <div class="invalid-feedback mb-3" style="margin-top: -10px">
                                         {{ $message }}
                                     </div>
                                     @enderror

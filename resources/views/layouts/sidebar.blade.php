@@ -23,7 +23,7 @@
                 <span class="tooltips">Data Petugas</span>
             </li>
             <li>
-                <a href="{{ url('/pembayaran') }}" class="{{ Request::is('pembayaran*') ? 'active' : '' }}">
+                <a href="{{ url('/pembayaran') }}" class="{{ Request::is('pembayaran*') ? 'd-block active' : '' }}">
                     <i class="fa-solid fa-coins"></i>
                     <span class="link_name">Data Pembayaran</span>
                 </a>

@@ -75,9 +75,12 @@ class PetugasController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(petugas $petugas)
+    public function show($petugas)
     {
-        //
+        return view('petugas.show', [
+            'title' => 'Data Siswa',
+            'petugas' => petugas::find($petugas),
+        ]);
     }
 
     /**
@@ -110,27 +113,6 @@ class PetugasController extends Controller
             $validasi['email'] = 'required|email|unique:users,email';
         }
 
-        if ($data_petugas == 'user.png') {
-
-            if ($request->file('image')) {
-                if ($request->oldImage) {
-                    Storage::delete($request->oldImage);
-                }
-                $image = $validatedData['image'] = $request->file('image')->store('images');
-            } else {
-                $image = 'user.png';
-            }
-        } else {
-            if ($request->file('image')) {
-                if ($request->oldImage) {
-                    Storage::delete($request->oldImage);
-                }
-                $image = $validatedData['image'] = $request->file('image')->store('images');
-            } else {
-                $image = $data_petugas->image;
-            }
-        }
-
         $validatedData = $request->validate(
             $validasi,
             [
@@ -151,6 +133,27 @@ class PetugasController extends Controller
                 'image.max' => 'Size Gambar Tidak Boleh Lebih Dari 5mb!'
             ]
         );
+
+        if ($data_petugas == 'user.png') {
+
+            if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = 'user.png';
+            }
+        } else {
+            if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = $data_petugas->image;
+            }
+        }
 
 
 

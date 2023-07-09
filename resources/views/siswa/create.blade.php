@@ -13,6 +13,7 @@
                     <form action="{{ url('/siswa/posts') }}" method="POST">
                         @csrf
                         <input type="text" name="id" value="{{ $siswa + 1 }}" hidden>
+                        <input type="text" name="tahun_ajaran" value="{{ date('Y') }}" hidden>
                         <div class="form-input d-flex flex-wrap p-1">
                             <div class="mb-3 col-6 pe-2">
                                 <label for="nisn" class="form-label">NISN</label>
@@ -65,7 +66,10 @@
                             </div>
                             <div class="mb-3 col-6 ps-2">
                                 <label for="password" class="form-label">Password</label>
-                                <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="{{ old('password','password') }}" placeholder="Masukkan Password">
+                                <div class="inputPassword">
+                                    <input type="password" name="password" class="form-control @error('password') is-invalid @enderror" id="password" value="{{ old('password','password') }}" placeholder="Masukkan Password">
+                                    <i id="showPassword" class="fa-solid fa-eye-slash"></i>
+                                </div>
                                 @error('password')
                                     <div class="invalid-feedback">
                                         {{ $message }}

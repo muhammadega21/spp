@@ -70,6 +70,7 @@
     box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.3);
     transform: translateX(15%);
     transition: .1s;
+    z-index: 999;
 }
 
 .nav .right .user.active .user-info{

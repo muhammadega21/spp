@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreignId('petugas_id')->nullable();
             $table->foreignId('spp_id');
             $table->foreignId('bulan_id');
-            $table->boolean('bayar');
+            $table->boolean('bayar')->default(0);
             $table->string('tgl_bayar')->nullable();
+            $table->string('tahun')->nullable();
             $table->string('jml_bayar')->nullable();
-            $table->string('tahun_ajaran');
             $table->timestamps();
         });
     }

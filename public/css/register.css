@@ -45,6 +45,27 @@ body{
     border: 2px solid #007bff;
 }
 
+.register .form-input .inputPassword{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.register .form-input #showPassword{
+    cursor: pointer;
+    position: absolute;
+    right: 3rem;
+    transform: scale(1);
+    transition: .2s;
+}
+
+.register .form-input #showPassword:hover{
+    transform: scale(1.1);
+}
+
+.register .form-input #showPassword:active{
+    transform: scale(.9);
+}
 
 .login{
     width: 100%;

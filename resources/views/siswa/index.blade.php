@@ -28,13 +28,13 @@
                     </div>
                   @endif
                     <table class="table table-bordered">
-                        <thead class="table-secondary">
+                      <thead class="table-secondary">
                           <tr>
                             <th scope="col">No</th>
                             <th scope="col">NISN</th>
                             <th scope="col">NIS</th>
                             <th scope="col">Nama</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Tahun Ajaran</th>
                             <th scope="col">Action</th>
                           </tr>
                         </thead>
@@ -45,9 +45,12 @@
                             <td>{{ $siswa->nisn }}</td>
                             <td>{{ $siswa->nis }}</td>
                             <td>{{ $siswa->name }}</td>
-                            <td>{{ $siswa->user->email }}</td>
+                            <td>{{ $siswa->tahun_ajaran - 1 }}/{{ $siswa->tahun_ajaran}}</td>
                             <td>
-                                <a href="" class="badge bg-primary btn-sm"><i class="fa-solid fa-eye text-light"></i></a>
+                              <form action="{{ url('/siswa/'. $siswa->id) }}" class="d-inline">
+                                @csrf
+                                  <button class="badge bg-primary border-0"><i class="fa-solid fa-eye text-light"></i></button>
+                              </form>
                                 <form action="{{ url('/siswa/'. $siswa->id.'/edit') }}" class="d-inline">
                                   <button class="badge bg-warning btn-sm border-0"><i class="fa-solid fa-pen-to-square text-light"></i></button>
                                 </form>

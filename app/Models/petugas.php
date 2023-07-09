@@ -15,4 +15,8 @@ class petugas extends Model
     {
         return $this->hasOne(User::class, 'petugas_id');
     }
+    public function pembayaran()
+    {
+        return $this->hasMany(User::class);
+    }
 }

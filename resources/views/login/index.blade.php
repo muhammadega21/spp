@@ -6,11 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>SPP | {{ $title }}</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/login.css">
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="fontawesome/css/all.css">
-  
+    <link rel="stylesheet" href="{{ url("css/style.css") }}">
+    <link rel="stylesheet" href="{{ url("css/login.css") }}">
+    <link rel="stylesheet" href="{{ url("bootstrap/css/bootstrap.min.css") }}">
+    <link rel="stylesheet" href="{{ url("fontawesome/css/all.min.css") }}">
+    <script src="{{ url("js/jquery-3.6.4.min.js") }}"></script>
 </head>
 
 <body>
@@ -52,7 +52,10 @@
                                         <label for="password">Password</label>
                                     </div>
                                     <span><i class="fa-solid fa-lock icon"></i></span>
-                                    <input type="password" name="password" id="password" placeholder="Password" class="form-control" required>
+                                    <div class="inputPassword">
+                                        <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
+                                        <i id="showPassword" class="fa-solid fa-eye-slash"></i>
+                                    </div>
                                 </div>
                                 <input type="submit" class="submit" value="LOGIN">
                                 <div class="action">
@@ -65,8 +68,8 @@
                                     </div>
                                 </div>
                                 <hr>
-                                <div class="register text-center" style="font-size: 14px">
-                                    <span><p>Don't have an account? <a href="/register">Register</a></p></span>
+                                <div id="asd" class="register text-center" style="font-size: 14px">
+                                    <span ><p>Don't have an account? <a href="/register">Register</a></p></span>
                                 </div>
                             </form>
                         </div>
@@ -74,6 +77,7 @@
             </div>
         </div>
     </div>
+    <script src="{{ url("js/script.js") }}"></script>
     <script src="bootstrap/js/bootstrap.bundle.min.js"></script>
 </body>
 

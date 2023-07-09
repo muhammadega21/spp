@@ -56,7 +56,10 @@
                             <td>{{ $petugas->user->email }}</td>
                             <td>{{ $level }}</td>
                             <td>
-                                <a href="" class="badge bg-primary btn-sm"><i class="fa-solid fa-eye text-light"></i></a>
+                              <form action="{{ url('/petugas/'. $petugas->id) }}" class="d-inline">
+                                @csrf
+                                  <button class="badge bg-primary border-0"><i class="fa-solid fa-eye text-light"></i></button>
+                              </form>
                                 <form action="{{ url('/petugas/'. $petugas->id.'/edit') }}" class="d-inline">
                                   <button class="badge bg-warning btn-sm border-0"><i class="fa-solid fa-pen-to-square text-light"></i></button>
                                 </form>

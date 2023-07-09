@@ -49,6 +49,7 @@ class DatabaseSeeder extends Seeder
             'nis' => '20.01264',
             'name' => 'Muhammad Ega Dermawan',
             'username' => 'Ega',
+            'tahun_ajaran' => '2021',
             'no_telp' => '085763000486',
             'alamat' => 'Padang Tinggi Piliang'
         ]);
@@ -125,7 +126,7 @@ class DatabaseSeeder extends Seeder
             'petugas_id' => '1',
             'spp_id' => '1',
             'bulan_id' => '1',
-            'tahun_ajaran' => '2023',
+            'tahun' => '2021',
             'bayar' => 1,
             'tgl_bayar' => '2023-04-18',
             'jml_bayar' => '110000'
@@ -135,7 +136,7 @@ class DatabaseSeeder extends Seeder
             'petugas_id' => '1',
             'spp_id' => '1',
             'bulan_id' => '2',
-            'tahun_ajaran' => '2023',
+            'tahun' => '2021',
             'bayar' => 1,
             'tgl_bayar' => '2023-04-18',
             'jml_bayar' => '110000'
@@ -144,8 +145,8 @@ class DatabaseSeeder extends Seeder
             'siswa_id' => '1',
             'petugas_id' => '1',
             'spp_id' => '1',
-            'bulan_id' => '2',
-            'tahun_ajaran' => '2022',
+            'bulan_id' => '3',
+            'tahun' => '2021',
             'bayar' => 1,
             'tgl_bayar' => '2023-04-18',
             'jml_bayar' => '110000'
@@ -155,7 +156,57 @@ class DatabaseSeeder extends Seeder
             'petugas_id' => '1',
             'spp_id' => '1',
             'bulan_id' => '4',
-            'tahun_ajaran' => '2023',
+            'tahun' => '2021',
+            'bayar' => 1,
+            'tgl_bayar' => '2023-04-18',
+            'jml_bayar' => '110000'
+        ]);
+        Pembayaran::create([
+            'siswa_id' => '1',
+            'petugas_id' => '1',
+            'spp_id' => '1',
+            'bulan_id' => '5',
+            'tahun' => '2021',
+            'bayar' => 1,
+            'tgl_bayar' => '2023-04-18',
+            'jml_bayar' => '110000'
+        ]);
+        Pembayaran::create([
+            'siswa_id' => '1',
+            'petugas_id' => '1',
+            'spp_id' => '1',
+            'bulan_id' => '6',
+            'tahun' => '2021',
+            'bayar' => 1,
+            'tgl_bayar' => '2023-04-18',
+            'jml_bayar' => '110000'
+        ]);
+        Pembayaran::create([
+            'siswa_id' => '1',
+            'petugas_id' => '1',
+            'spp_id' => '1',
+            'bulan_id' => '7',
+            'tahun' => '2021',
+            'bayar' => 1,
+            'tgl_bayar' => '2023-04-18',
+            'jml_bayar' => '110000'
+        ]);
+        Pembayaran::create([
+            'siswa_id' => '1',
+            'petugas_id' => '1',
+            'spp_id' => '1',
+            'bulan_id' => '8',
+            'tahun' => '2021',
+            'bayar' => 1,
+            'tgl_bayar' => '2023-04-18',
+            'jml_bayar' => '110000'
+        ]);
+        Pembayaran::create([
+            'siswa_id' => '1',
+            'petugas_id' => '1',
+            'spp_id' => '1',
+            'bulan_id' => '9',
+            'tahun' => '2021',
             'bayar' => 1,
             'tgl_bayar' => '2023-04-18',
             'jml_bayar' => '110000'

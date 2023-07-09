@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\bulan;
 use App\Models\jurusan;
 use App\Models\kelas;
+use App\Models\pembayaran;
 use App\Models\siswa;
+use App\Models\spp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -84,9 +87,20 @@ class SiswaController extends Controller
             'nis' => $request['nis'],
             'name' => $request['name'],
             'username' => $request['username'],
+            'tahun_ajaran' => $request['tahun_ajaran'],
             'kelas_id' => $request['kelas_id'],
             'jurusan_id' => $request['jurusan_id'],
         ]);
+
+        // for ($i=1; $i < 13; $i++) { 
+        //     pembayaran::create([
+        //         'siswa_id' => $request['id'],
+        //         'spp_id' => spp::get('id')->last()->id,
+        //         'bulan_id' => $i,
+        //         'bayar' => 0,
+        //         'tahun'  => spp::get('tahun')->last()->tahun
+        //     ]);
+        // }
 
         return redirect('/siswa')->with('success', 'Berhasil Menambah Siswa');
     }
@@ -96,7 +110,12 @@ class SiswaController extends Controller
      */
     public function show(siswa $siswa)
     {
-        //
+        return view('siswa.show', [
+            'title' => 'Data Siswa',
+            'siswa' => $siswa,
+            'kelas' => kelas::all(),
+            'bulan' => bulan::all()
+        ]);
     }
 
     /**
@@ -135,27 +154,6 @@ class SiswaController extends Controller
             $validasi['email'] = 'required|email|unique:users,email';
         }
 
-        if ($siswas == 'user.png') {
-
-            if ($request->file('image')) {
-                if ($request->oldImage) {
-                    Storage::delete($request->oldImage);
-                }
-                $image = $validatedData['image'] = $request->file('image')->store('images');
-            } else {
-                $image = 'user.png';
-            }
-        } else {
-            if ($request->file('image')) {
-                if ($request->oldImage) {
-                    Storage::delete($request->oldImage);
-                }
-                $image = $validatedData['image'] = $request->file('image')->store('images');
-            } else {
-                $image = $siswas->image;
-            }
-        }
-
         $validatedData = $request->validate(
             $validasi,
             [
@@ -187,6 +185,27 @@ class SiswaController extends Controller
             ]
         );
 
+        if ($siswas == 'user.png') {
+
+            if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = 'user.png';
+            }
+        } else {
+            if ($request->file('image')) {
+                if ($request->oldImage) {
+                    Storage::delete($request->oldImage);
+                }
+                $image = $validatedData['image'] = $request->file('image')->store('images');
+            } else {
+                $image = $siswas->image;
+            }
+        }
+
 
 
         siswa::where('id', $siswas->id)
@@ -196,6 +215,7 @@ class SiswaController extends Controller
                 'nis' => $request['nis'],
                 'name' => $request['name'],
                 'username' => $request['username'],
+                'tahun_ajaran' => $request['tahun_ajaran'],
                 'kelas_id' => $request['kelas_id'],
                 'jurusan_id' => $request['jurusan_id'],
                 'image' => $image
@@ -219,6 +239,7 @@ class SiswaController extends Controller
         }
         siswa::destroy($siswa->id);
         User::destroy($siswa->user->id);
+        pembayaran::destroy($siswa->pembayaran);
         return redirect('/siswa')->with('success', 'Berhasil Menghapus Data');
     }
 }

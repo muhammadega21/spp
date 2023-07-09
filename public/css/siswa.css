@@ -29,6 +29,7 @@
     width: 100%;
     max-width: 350px;
     display: flex;
+    position: relative;
 }
 
 .siswa .table-siswa .siswa-action .search-box input{
@@ -37,12 +38,13 @@
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 50px;
     padding: 10px 20px;
+    width: 350px;
 }
 
 .siswa .table-siswa .siswa-action .search-box button{
     position: absolute;
-    margin-top: 2px;
-    margin-left: -46px;
+    top: 4%;
+    right: 2px;
     background: #007bff;
     border: none;
     padding: 9px 14px;
@@ -65,7 +67,6 @@
 }
 
 .siswa .create-siswa .form-input input:not(#pass,#image){
-    
     border: 1px solid rgba(0, 0, 0, .2);
     background: transparent;
     color: rgba(0, 0, 0, .8);
@@ -85,6 +86,50 @@
     border: 2px solid rgba(255, 0, 0, 0.5) !important;
 }
 
+.siswa .create-siswa .form-input .inputPassword{
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.siswa .create-siswa .form-input #showPassword{
+    cursor: pointer;
+    position: absolute;
+    right: 10px;
+    transform: scale(1);
+    transition: .2s;
+}
+
+.siswa .create-siswa .form-input #showPassword:hover{
+    transform: scale(1.1);
+}
+
+.siswa .create-siswa .form-input #showPassword:active{
+    transform: scale(.9);
+}
+
 .siswa .create-siswa .form-input .img-preview{
     box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .1);
 }
+
+/* show siswa */
+
+.siswa .data-user .left{
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    border-radius: 100%;
+    border: 2px solid rgba(0, 0, 0, .1);
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, .1);
+
+}
+
+.siswa .data-user .left img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    object-position: center center;
+    
+}
+
+/* show siswa */

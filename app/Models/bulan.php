@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class bulan extends Model
 {
     use HasFactory;
+
+    public function pembayaran()
+    {
+        return $this->hasMany(pembayaran::class);
+    }
 }

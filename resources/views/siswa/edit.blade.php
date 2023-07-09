@@ -6,7 +6,7 @@
         <div class="col-9 col-sm-10 col-lg-11">
             <div class="siswa">
             <div class="title">
-                <h5 class="d-block my-auto">Tambah Siswa</h5>   
+                <h5 class="d-block my-auto">Edit Siswa</h5>   
                 <span class="text-secondary"><a href="/dashboard">Home</a> > <a href="/siswa">Data Siswa</a> > Edit Siswa</span>
             </div>
                 <div class="create-siswa">
@@ -14,6 +14,7 @@
                         @method('put')
                         @csrf
                         <input type="text" name="id" value="{{ $siswa->id }}" hidden>
+                        <input type="text" name="tahun_ajaran" value="{{ $siswa->tahun_ajaran }}" hidden>
                         <div class="form-input d-flex flex-wrap p-1">
                             <div class="mb-3 col-6 pe-2">
                                 <label for="nisn" class="form-label">NISN</label>
@@ -124,6 +125,12 @@
                             <div class="mb-3 col-6 pe-2">
                                 <div class="mb-3">
                                     <label for="image" class="form-label">Foto Profile</label>
+                                    <input class="form-control mb-3 @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
+                                    @error('image')
+                                    <div class="invalid-feedback mb-3" style="margin-top: -10px">
+                                        {{ $message }}
+                                    </div>
+                                    @enderror
                                     <input type="hidden" name="oldImage" value="{{ $siswa->image }}">
                                     @if ($siswa->image)
                                         @if ($siswa->image == 'user.png')
@@ -134,12 +141,6 @@
                                     @else
                                         <img class="img-preview img-fluid mb-3 col-sm-5">
                                     @endif
-                                    <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image" onchange="previewImage()">
-                                    @error('image')
-                                    <div class="invalid-feedback">
-                                        {{ $message }}
-                                    </div>
-                                    @enderror
                                 </div>
                             </div>
                         </div>

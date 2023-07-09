@@ -19,6 +19,7 @@ return new class extends Migration
             $table->char('nis', 8);
             $table->string('name');
             $table->string('username');
+            $table->string('tahun_ajaran');
             $table->string('no_telp')->nullable();
             $table->string('alamat')->nullable();
             $table->string('image')->default('user.png');

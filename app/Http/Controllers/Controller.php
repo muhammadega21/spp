@@ -31,10 +31,10 @@ class Controller extends BaseController
             'jml_petugas' => Petugas::count(),
             'total_bulanan' => DB::table('pembayarans')
                 ->where('bulan_id', date('n'))
-                ->where('tahun_ajaran', date('Y'))
+                ->where('tahun', date('Y'))
                 ->sum('jml_bayar'),
             'total_tahunan' => DB::table('pembayarans')
-                ->where('tahun_ajaran', date('Y'))
+                ->where('tahun', date('Y'))
                 ->sum('jml_bayar'),
             'jml_saldo' => DB::table('pembayarans')->sum('jml_bayar'),
             'tgl' => Carbon::parse($tgl)->locale('id')->isoFormat('MMMM'),

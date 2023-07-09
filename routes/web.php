@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\PembayaranController;
 use App\Http\Controllers\PetugasController;
 use App\Http\Controllers\SiswaController;
 use Illuminate\Support\Facades\Route;
@@ -38,3 +39,6 @@ Route::resource('/siswa/posts', SiswaController::class)->middleware('auth');
 // Petugas
 Route::resource('/petugas', PetugasController::class)->middleware('auth');
 Route::resource('/petugas/posts', PetugasController::class)->middleware('auth');
+
+// Pembayaran
+Route::resource('/pembayaran', PembayaranController::class)->middleware('auth');

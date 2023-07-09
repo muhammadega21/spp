@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{ url("css/sidebar.css") }}">
     <link rel="stylesheet" href="{{ url("css/dashboard.css") }}">
     <link rel="stylesheet" href="{{ url("css/siswa.css") }}">
+    <link rel="stylesheet" href="{{ url("css/pembayaran.css") }}">
     <link rel="stylesheet" href="{{ url("bootstrap/css/bootstrap.min.css") }}">
     <link rel="stylesheet" href="{{ url("fontawesome/css/all.min.css") }}">
      <script src="{{ url("js/jquery-3.6.4.min.js") }}"></script>
