@@ -1,0 +1,24 @@
+body {
+    background-color: #fdfdfc;
+    color: #1b1b18;
+}
+
+.content {
+    padding: 1rem 2rem;
+    background: #fff;
+    border-radius: 0.5rem;
+    box-shadow: 0 10px 15px -5px rgb(0 0 0 / 0.1),
+        0 4px 6px -4px rgb(0 0 0 / 0.1);
+}
+
+.break-line {
+    border: 0;
+    height: 1px;
+    background: #e3e3e0;
+    margin: 1rem 0;
+}
+
+label:has(+ input:required):after {
+    content: " *";
+    color: red;
+}
