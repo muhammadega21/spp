@@ -2,7 +2,7 @@
     <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
     <div
         class="bg-base-100 border-r border-gray-200 flex min-h-full flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 w-64">
-        <ul class="menu w-full grow text-lg">
+        <ul class="menu w-full grow text-lg gap-y-1">
             <li class="{{ Route::is('dashboard.index') ? 'bg-gray-200' : '' }} rounded">
                 <a href="{{ route('dashboard.index') }}" class="is-drawer-close:tooltip is-drawer-close:tooltip-right "
                     data-tip="Dashboard">
@@ -13,8 +13,9 @@
 
             <span class="is-drawer-close:hidden text-sm text-gray-500 my-2 ps-4">Data Master</span>
             @can('admin')
-                <li>
-                    <a href="#" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Data Siswa">
+                <li class="{{ Route::is('dashboard.student.index') ? 'bg-gray-200' : '' }} rounded">
+                    <a href="{{ route('dashboard.student.index') }}"
+                        class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Data Siswa">
                         <i class='bx  bx-user'></i>
                         <span class="is-drawer-close:hidden text-base">Data Siswa</span>
                     </a>
@@ -28,8 +29,9 @@
                 </li>
             @endcan
 
-            <li>
-                <a href="#" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Data Tagihan">
+            <li class="{{ Route::is('dashboard.bill*') ? 'bg-gray-200' : '' }} rounded">
+                <a href="{{ route('dashboard.bill.index') }}"
+                    class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Data Tagihan">
                     <i class='bx  bx-receipt'></i>
                     <span class="is-drawer-close:hidden text-base">Data Tagihan</span>
                 </a>

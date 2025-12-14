@@ -7,17 +7,23 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     protected $fillable = [
-        'bill_id',
+        'bill_month_id',
+        'bill_package_id',
         'student_id',
         'amount',
         'proof_image',
         'status',
-        'note',
+        'note'
     ];
 
-    public function bill()
+    public function month()
     {
-        return $this->belongsTo(Bill::class);
+        return $this->belongsTo(BillMonth::class, 'bill_month_id');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(BillPackage::class, 'bill_package_id');
     }
 
     public function student()

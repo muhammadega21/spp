@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('bills', function (Blueprint $table) {
+        Schema::create('bill_months', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('bill_package_id')->constrained('bill_packages')->onDelete('cascade');
+            $table->unsignedTinyInteger('month')->nullable();
+            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
-            $table->string('bill_name'); // contoh: "SPP Januari", "Uang Gedung"
-            $table->integer('amount');
-            $table->string('month')->nullable(); // opsional
-            $table->enum('status', ['unpaid', 'pending', 'paid', 'rejected'])->default('unpaid');
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bills');
+        Schema::dropIfExists('bill_months');
     }
 };

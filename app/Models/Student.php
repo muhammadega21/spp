@@ -8,10 +8,18 @@ class Student extends Model
 {
     protected $fillable = [
         'guardian_id',
-        'nis',
         'name',
-        'class',
+        'class_id',
+        'year'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+        static::deleting(function ($student) {
+            $student->guardian()->delete();
+        });
+    }
 
     public function guardian()
     {
@@ -20,6 +28,16 @@ class Student extends Model
 
     public function class()
     {
-        return $this->belongsTo(StudentClass::class);
+        return $this->belongsTo(StudentClass::class, 'class_id');
+    }
+
+    public function billMonths()
+    {
+        return $this->hasMany(BillMonth::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }

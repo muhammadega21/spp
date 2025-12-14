@@ -13,12 +13,22 @@ return new class extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('bill_id')->constrained('bills')->onDelete('cascade');
-            $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
+            $table->foreignId('bill_month_id')->nullable()
+                ->constrained('bill_months')
+                ->onDelete('cascade');
+
+            $table->foreignId('bill_package_id')
+                ->constrained('bill_packages')
+                ->onDelete('cascade');
+
+            $table->foreignId('student_id')
+                ->constrained('students')
+                ->onDelete('cascade');
+
             $table->integer('amount');
-            $table->string('proof_image'); // bukti bayar
+            $table->string('proof_image')->nullable();
             $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
-            $table->text('note')->nullable(); // alasan penolakan
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

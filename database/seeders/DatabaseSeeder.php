@@ -33,7 +33,13 @@ class DatabaseSeeder extends Seeder
 
         User::create([
             'name' => 'Budi',
-            'email' => 'wali@gmail.com',
+            'email' => 'budi@gmail.com',
+            'password' => bcrypt('password'),
+            'role' => 'wali'
+        ]);
+        User::create([
+            'name' => 'anto',
+            'email' => 'anto@gmail.com',
             'password' => bcrypt('password'),
             'role' => 'wali'
         ]);
@@ -41,12 +47,22 @@ class DatabaseSeeder extends Seeder
             'name' => 'X-RPL 1',
             'Competency' => 'Rekayasa Perangkat Lunak',
         ]);
+        StudentClass::create([
+            'name' => 'X-RPL 2',
+            'Competency' => 'Rekayasa Perangkat Lunak',
+        ]);
 
         Student::create([
             'guardian_id' => 2,
             'class_id' => 1,
-            'nis' => '123456',
             'name' => 'Muhammad Ega Dermawan',
+            'year' => 2025
+        ]);
+        Student::create([
+            'guardian_id' => 3,
+            'class_id' => 2,
+            'name' => 'Jokowi',
+            'year' => 2024
         ]);
     }
 }

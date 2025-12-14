@@ -1,4 +1,10 @@
 <dialog id="{{ $id }}" class="modal">
+
+    @php
+        $inputs = $inputs ?? [];
+        $selects = $selects ?? [];
+    @endphp
+
     <div class="modal-box">
         <h3 class="text-lg font-bold">{{ $title }}</h3>
         <form action="{{ $action }}" method="{{ strtoupper($method) === 'PUT' ? 'POST' : $method }}"
@@ -11,6 +17,10 @@
             @foreach ($inputs as $input)
                 <x-forms.input :id="$input['id']" :label="$input['label']" :type="$input['type']" :name="$input['name']" :value="$input['value']"
                     :isRequired="$input['isRequired']" />
+            @endforeach
+            @foreach ($selects as $select)
+                <x-forms.select :id="$select['id']" :label="$select['label']" :name="$select['name']" :options="$select['options']"
+                    :value="$select['value']" :isRequired="$select['isRequired']" />
             @endforeach
 
         </form>

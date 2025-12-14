@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('guardian_id')->constrained('users')->onDelete('cascade'); // wali murid
             $table->foreignId('class_id')->constrained('student_classes')->onDelete('cascade');
-            $table->string('nis')->unique();
+            $table->year('year')->default(now()->year);
             $table->string('name');
             $table->timestamps();
         });
