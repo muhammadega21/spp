@@ -18,7 +18,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $item)
+                    @forelse ($data as $item)
                         <tr>
                             <th>{{ $loop->iteration + $data->firstItem() - 1 }}</th>
                             <td>{{ $item->name }}</td>
@@ -37,7 +37,7 @@
                             </td>
                         </tr>
 
-                        <x-modal id="modal_edit_student_{{ $item->id }}" title="Edit Kelas"
+                        <x-modals.modal id="modal_edit_student_{{ $item->id }}" title="Edit Kelas"
                             action="{{ route('dashboard.student.update', $item->id) }}" method="PUT" :inputs="[
                                 [
                                     'id' => 'student_name',
@@ -74,7 +74,9 @@
                                     'isRequired' => true,
                                 ],
                             ]" />
-                    @endforeach
+                    @empty
+                        <td colspan="9" class="text-center text-slate-600">Data Kosong</td>
+                    @endforelse
                 </tbody>
             </table>
         </div>
@@ -84,8 +86,8 @@
         {{ $data->links() }}
     </div>
 
-    <x-modal id="modal_add_student" title="Tambah Siswa" action="{{ route('dashboard.student.store') }}" method="POST"
-        :inputs="[
+    <x-modals.modal id="modal_add_student" title="Tambah Siswa" action="{{ route('dashboard.student.store') }}"
+        method="POST" :inputs="[
             [
                 'id' => 'guardian_name',
                 'label' => 'Nama Wali Murid',

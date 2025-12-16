@@ -8,6 +8,7 @@ use App\Models\Payment;
 use App\Models\Student;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BillController extends Controller
 {
@@ -27,7 +28,7 @@ class BillController extends Controller
         ];
 
         return view('pages.bill.index', [
-            'title' => 'Tagihan',
+            'title' => 'Data Tagihan',
             'data' => BillPackage::orderBy('title', 'asc')->paginate(10),
             'types' => $data[0]
         ]);
@@ -102,14 +103,25 @@ class BillController extends Controller
     {
         $package = BillPackage::findOrFail($id);
 
-        $students = Student::where('year', $package->year)
-            ->when($package->type === 'monthly', function ($query) use ($id) {
-                $query->with(['billMonths' => function ($q) use ($id) {
-                    $q->where('bill_package_id', $id)
-                        ->orderBy('month');
-                }]);
-            })
-            ->get();
+        if (Auth::user()->role !== 'admin') {
+            $students = Student::with('class')->where('guardian_id', Auth::user()->id)->where('year', $package->year)
+                ->when($package->type === 'monthly', function ($query) use ($id) {
+                    $query->with(['billMonths' => function ($q) use ($id) {
+                        $q->where('bill_package_id', $id)
+                            ->orderBy('month');
+                    }]);
+                })
+                ->get();
+        } else {
+            $students = Student::with('class')->where('year', $package->year)
+                ->when($package->type === 'monthly', function ($query) use ($id) {
+                    $query->with(['billMonths' => function ($q) use ($id) {
+                        $q->where('bill_package_id', $id)
+                            ->orderBy('month');
+                    }]);
+                })
+                ->get();
+        }
 
         return view('pages.bill.show', [
             'title'   => 'Detail Tagihan',
@@ -122,7 +134,7 @@ class BillController extends Controller
     {
         $package = BillPackage::findOrFail($id);
 
-        $students = Student::where('year', $package->year)->paginate(10);
+        $students = Student::with('class')->where('year', $package->year)->paginate(10);
 
         $billMonths = BillMonth::with('payment')->where('bill_package_id', $id)
             ->where('month', $month)

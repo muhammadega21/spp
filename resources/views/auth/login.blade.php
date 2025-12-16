@@ -7,10 +7,22 @@
     <title>{{ $title }}</title>
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src='https://code.jquery.com/jquery-3.7.0.min.js'
+        integrity='sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=' crossorigin='anonymous'></script>
 </head>
 
 <body>
-    <!-- component -->
+    @if (session()->has('error'))
+        <script>
+            Swal.fire({
+                title: "Error!",
+                text: "{{ session('error') }}",
+                icon: "error"
+            });
+        </script>
+    @endif
+
     <div class="bg-no-repeat bg-cover bg-center relative"
         style="background-image: url(https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=873&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D);">
         <div class="absolute bg-linear-to-r from-green-600 to-green-900/30 opacity-75 inset-0 z-0"></div>
@@ -34,17 +46,22 @@
                     <div class="space-y-5">
                         <div class="space-y-2">
                             <label class="text-sm font-medium text-gray-700 tracking-wide">Email</label>
-                            <input type="text"
-                                class=" w-full text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
+                            <input type="text" class=" w-full input @error('email') input-error @enderror mt-1"
                                 name="email" placeholder="mail@gmail.com">
+                            @error('email')
+                                <p class="text-sm text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div class="space-y-2">
                             <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
                                 Password
                             </label>
                             <input type="password"
-                                class="w-full content-center text-base px-4 py-2 border  border-gray-300 rounded-lg focus:outline-none focus:border-green-400"
-                                name="password" placeholder="Masukkan password">
+                                class="w-full input input @error('password') input-error @enderror mt-1" name="password"
+                                placeholder="Masukkan password">
+                            @error('password')
+                                <p class="text-sm text-red-400">{{ $message }}</p>
+                            @enderror
                         </div>
                         <div>
                             <button type="submit"

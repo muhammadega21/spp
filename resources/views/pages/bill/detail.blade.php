@@ -51,7 +51,7 @@
                             </td>
                         </tr>
 
-                        <x-modal id="modal_edit_detail_bill_month{{ $student->id }}" title="Edit Detail Pembayaran"
+                        <x-modals.modal id="modal_edit_detail_bill_month{{ $student->id }}" title="Edit Detail Pembayaran"
                             action="{{ route('dashboard.bill.detail.update', [$package->id, $month]) }}" method="PUT"
                             :inputs="[
                                 [
@@ -95,11 +95,14 @@
                         <x-alert />
 
                         @if ($bill && $bill->payment)
-                            <x-modal-view id="modal_view_payment_{{ $student->id }}" title="Detail Pembayaran">
+                            <x-modals.modal-view id="modal_view_payment_{{ $student->id }}" title="Detail Pembayaran">
 
                                 <div class="grid grid-cols-2 gap-2">
                                     <span class="font-semibold">Nama Siswa</span>
                                     <span>{{ $student->name }}</span>
+
+                                    <span class="font-semibold">Kelas</span>
+                                    <span>{{ $student->class->name }}</span>
 
                                     <span class="font-semibold">Bulan</span>
                                     <span>{{ \Carbon\Carbon::create(null, $month)->locale('id_ID')->monthName }}</span>
@@ -135,7 +138,7 @@
                                     @endif
                                 </div>
 
-                            </x-modal-view>
+                            </x-modals.modal-view>
                         @endif
                     @endforeach
                 </tbody>

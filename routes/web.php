@@ -4,6 +4,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WaliController;
@@ -29,10 +30,10 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::get('/', [DashboardController::class, 'index'])->name('index');
 
     Route::controller(StudentController::class)->group(function () {
-        Route::get('/student', 'index')->name('student.index');
-        Route::post('/student', 'store')->name('student.store');
-        Route::put('/student/{studentClass}', 'update')->name('student.update');
-        Route::delete('/student/{studentClass}', 'destroy')->name('student.destroy');
+        Route::get('/students', 'index')->name('student.index');
+        Route::post('/students', 'store')->name('student.store');
+        Route::put('/students/{studentClass}', 'update')->name('student.update');
+        Route::delete('/students/{studentClass}', 'destroy')->name('student.destroy');
     });
 
     Route::controller(StudentClassController::class)->group(function () {
@@ -43,14 +44,23 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     });
 
     Route::controller(BillController::class)->group(function () {
-        Route::get('/bill', 'index')->name('bill.index');
-        Route::post('/bill', 'store')->name('bill.store');
-        Route::put('/bill/{id}', 'update')->name('bill.update');
-        Route::delete('/bill/{id}', 'destroy')->name('bill.destroy');
+        Route::get('/bills', 'index')->name('bill.index');
+        Route::post('/bills', 'store')->name('bill.store');
+        Route::put('/bills/{id}', 'update')->name('bill.update');
+        Route::delete('/bills/{id}', 'destroy')->name('bill.destroy');
 
-        Route::get('/bill/{id}/show', 'show')->name('bill.show');
-        Route::get('/bill/{id}/detail/{month}', 'detail')->name('bill.detail');
-        Route::put('/bill/{id}/detail/{month}/update', 'detailUpdate')->name('bill.detail.update');
-        Route::put('/bill/{id}/once/update', 'detailOnceUpdate')->name('bill.detail.update.once');
+        Route::get('/bills/{id}/show', 'show')->name('bill.show');
+        Route::get('/bills/{id}/detail/{month}', 'detail')->name('bill.detail');
+        Route::put('/bills/{id}/detail/{month}/update', 'detailUpdate')->name('bill.detail.update');
+        Route::put('/bills/{id}/once/update', 'detailOnceUpdate')->name('bill.detail.update.once');
+    });
+
+    Route::controller(PaymentController::class)->group(function () {
+        Route::get('/payments', 'index')->name('payment.index');
+        Route::get('/payments/history', 'history')->name('payment.history');
+        Route::post('/payments/{id}/approved', 'approve')->name('payment.approved');
+        Route::post('/payments/{id}/reject', 'reject')->name('payment.reject');
+
+        Route::post('/payments/{id}/pay/once', 'payOnce')->name('payment.pay.once');
     });
 });

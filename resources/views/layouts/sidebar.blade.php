@@ -37,17 +37,19 @@
                 </a>
             </li>
 
-            <li>
-                <a href="#" class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Data Pembayaran">
-                    <i class='bx  bx-wallet-note'></i>
-                    <span class="is-drawer-close:hidden text-base">Data Pembayaran</span>
-                </a>
-            </li>
+            @can('admin')
+                <li class="{{ Route::is('dashboard.payment.index') ? 'bg-gray-200' : '' }} rounded">
+                    <a href="{{ route('dashboard.payment.index') }}"
+                        class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Data Pembayaran">
+                        <i class='bx  bx-wallet-note'></i>
+                        <span class="is-drawer-close:hidden text-base">Data Pembayaran</span>
+                    </a>
+                </li>
+            @endcan
 
-            <li>
-                <a href="#" class="is-drawer-close:tooltip is-drawer-close:tooltip-right"
-                    data-tip="Riwayat Pembayaran">
+            <li class="{{ Route::is('dashboard.payment.history') ? 'bg-gray-200' : '' }} rounded">
+                <a href="{{ route('dashboard.payment.history') }}"
+                    class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Riwayat Pembayaran">
                     <i class='bx  bx-history'></i>
                     <span class="is-drawer-close:hidden text-base">Riwayat Pembayaran</span>
                 </a>
