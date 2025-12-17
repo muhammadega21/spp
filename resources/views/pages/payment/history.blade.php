@@ -45,8 +45,9 @@
                             <td>Rp {{ number_format($item->amount, 0, ',', '.') }}</td>
                             <td>{{ \Carbon\Carbon::parse($item->created_at)->translatedFormat('d F Y') }}</td>
                             <td>
-                                <span class="badge {{ $item->status == 'approved' ? 'badge-success' : 'badge-error' }}">
-                                    {{ $item->status == 'approved' ? 'Diterima' : 'Ditolak' }}
+                                <span
+                                    class="badge {{ $item->status == 'approved' ? 'badge-success' : ($item->status == 'pending' ? 'badge-warning' : 'badge-error') }}">
+                                    {{ $item->status == 'approved' ? 'Diterima' : ($item->status == 'pending' ? 'Pending' : 'Ditolak') }}
                                 </span>
                             </td>
                             <td class="flex gap-x-2">

@@ -6,7 +6,7 @@
                 {{ $package->title }}
             </h2>
             @can('wali')
-                <button class="btn btn-primary">Bayar</button>
+                <button class="btn btn-primary" onclick="modal_pay_month.showModal()">Bayar</button>
             @endcan
         </div>
         <div class="break-line"></div>

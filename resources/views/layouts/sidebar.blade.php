@@ -1,4 +1,4 @@
-<div class="drawer-side is-drawer-close:overflow-visible">
+<div class="drawer-side is-drawer-close:overflow-visible ">
     <label for="my-drawer-4" aria-label="close sidebar" class="drawer-overlay"></label>
     <div
         class="bg-base-100 border-r border-gray-200 flex min-h-full flex-col items-start is-drawer-close:w-14 is-drawer-open:w-64 w-64">
@@ -57,8 +57,9 @@
 
             <span class="is-drawer-close:hidden text-sm text-gray-500 my-2 ps-4">Pengaturan</span>
 
-            <li>
-                <a href="#" class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profil">
+            <li class="{{ Route::is('dashboard.profile.index') ? 'bg-gray-200' : '' }} rounded">
+                <a href="{{ route('dashboard.profile.index') }}"
+                    class="is-drawer-close:tooltip is-drawer-close:tooltip-right" data-tip="Profil">
                     <i class='bx  bx-cog'></i>
                     <span class="is-drawer-close:hidden text-base">Profil</span>
                 </a>
@@ -70,6 +71,15 @@
                     <i class="bx bx-arrow-out-right-square-half"></i>
                     <span class="is-drawer-close:hidden text-base">Logout</span>
                 </a>
+            </li>
+        </ul>
+        <ul class="absolute bottom-0 w-full">
+            <li class="flex items-center gap-x-4 py-6 px-4 border-t border-gray-200">
+                <i class="bx bx-user text-2xl p-3.5 rounded-full bg-success text-white"></i>
+                <div>
+                    <p class="font-semibold text-lg">{{ auth()->user()->name }}</p>
+                    <p class="text-xs text-gray-500">{{ auth()->user()->role == 'admin' ? 'Admin' : 'Wali Murid' }}</p>
+                </div>
             </li>
         </ul>
     </div>

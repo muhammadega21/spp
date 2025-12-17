@@ -47,16 +47,27 @@ class PaymentController extends Controller
         if ($payment->bill_month_id) {
             BillMonth::where('id', $payment->bill_month_id)
                 ->update(['status' => 'paid']);
+
+            PaymentHistory::create([
+                'bill_month_id' => $payment->bill_month_id,
+                'bill_package_id' => $payment->bill_package_id,
+                'student_id' => $payment->student_id,
+                'status' => 'approved',
+                'amount' => $payment->amount,
+                'proof_image' => $payment->proof_image,
+                'note' => $request->note
+            ]);
+        } else {
+            PaymentHistory::create([
+                'bill_package_id' => $payment->bill_package_id,
+                'student_id' => $payment->student_id,
+                'status' => 'approved',
+                'amount' => $payment->amount,
+                'proof_image' => $payment->proof_image,
+                'note' => $request->note
+            ]);
         }
 
-        PaymentHistory::create([
-            'bill_package_id' => $payment->bill_package_id,
-            'student_id' => $payment->student_id,
-            'status' => 'approved',
-            'amount' => $payment->amount,
-            'proof_image' => $payment->proof_image,
-            'note' => $request->note
-        ]);
 
         return back()->with('success', 'Pembayaran berhasil disetujui');
     }
@@ -77,16 +88,27 @@ class PaymentController extends Controller
         if ($payment->bill_month_id) {
             BillMonth::where('id', $payment->bill_month_id)
                 ->update(['status' => 'unpaid']);
+
+            PaymentHistory::create([
+                'bill_month_id' => $payment->bill_month_id,
+                'bill_package_id' => $payment->bill_package_id,
+                'student_id' => $payment->student_id,
+                'status' => 'rejected',
+                'amount' => $payment->amount,
+                'proof_image' => $payment->proof_image,
+                'note' => $request->note
+            ]);
+        } else {
+            PaymentHistory::create([
+                'bill_package_id' => $payment->bill_package_id,
+                'student_id' => $payment->student_id,
+                'status' => 'rejected',
+                'amount' => $payment->amount,
+                'proof_image' => $payment->proof_image,
+                'note' => $request->note
+            ]);
         }
 
-        PaymentHistory::create([
-            'bill_package_id' => $payment->bill_package_id,
-            'student_id' => $payment->student_id,
-            'status' => 'rejected',
-            'amount' => $payment->amount,
-            'proof_image' => $payment->proof_image,
-            'note' => $request->note
-        ]);
 
         return back()->with('success', 'Pembayaran ditolak');
     }
@@ -116,6 +138,67 @@ class PaymentController extends Controller
             ]
         );
 
+        PaymentHistory::create([
+            'bill_package_id' => $id,
+            'student_id' => $request->student_id,
+            'status' => 'pending',
+            'amount' => $request->amount,
+            'proof_image' => $image,
+        ]);
+
         return back()->with('success', 'Pembayaran berhasil! Silahkan menunggu verifikasi');
+    }
+
+    public function payMonth(Request $request, $id)
+    {
+        $request->validate([
+            'months'     => 'required|array|min:1',
+            'student_id' => 'required|exists:students,id',
+            'amount'     => 'required|numeric',
+            'image'      => 'required|image|mimes:jpg,jpeg,png|max:2048',
+        ]);
+
+        $image = $request->file('image')->store('payments', 'public');
+
+        foreach ($request->months as $month) {
+
+            $billMonth = BillMonth::where('bill_package_id', $id)
+                ->where('student_id', $request->student_id)
+                ->where('month', $month)
+                ->first();
+
+            if (!$billMonth) {
+                continue;
+            }
+
+            $payment = Payment::updateOrCreate(
+                [
+                    'bill_month_id'   => $billMonth->id,
+                    'bill_package_id' => $id,
+                    'student_id'      => $request->student_id,
+                ],
+                [
+                    'amount'      => $request->amount,
+                    'status'      => 'pending',
+                    'proof_image' => $image,
+                ]
+            );
+
+            $billMonth->update([
+                'status' => 'pending'
+            ]);
+
+            PaymentHistory::create([
+                'payment_id'      => $payment->id,
+                'bill_month_id'   => $billMonth->id,
+                'bill_package_id' => $id,
+                'student_id'      => $request->student_id,
+                'amount'          => $request->amount,
+                'status'          => 'pending',
+                'proof_image'     => $image,
+            ]);
+        }
+
+        return back()->with('success', 'Pembayaran berhasil! Silakan menunggu verifikasi.');
     }
 }

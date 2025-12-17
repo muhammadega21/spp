@@ -103,6 +103,7 @@ class BillController extends Controller
     {
         $package = BillPackage::findOrFail($id);
 
+
         if (Auth::user()->role !== 'admin') {
             $students = Student::with('class')->where('guardian_id', Auth::user()->id)->where('year', $package->year)
                 ->when($package->type === 'monthly', function ($query) use ($id) {
@@ -113,7 +114,7 @@ class BillController extends Controller
                 })
                 ->get();
         } else {
-            $students = Student::with('class')->where('year', $package->year)
+            $students = Student::with(['class'])->where('year', $package->year)
                 ->when($package->type === 'monthly', function ($query) use ($id) {
                     $query->with(['billMonths' => function ($q) use ($id) {
                         $q->where('bill_package_id', $id)
@@ -123,10 +124,22 @@ class BillController extends Controller
                 ->get();
         }
 
+
+        $unpaidMonths = $students->first()->billMonths
+            ->where('status', 'unpaid')
+            ->map(function ($bill) {
+                return [
+                    'id' => $bill->month,
+                    'name' => Carbon::create()->month($bill->month)->translatedFormat('F'),
+                ];
+            })
+            ->values();
+
         return view('pages.bill.show', [
             'title'   => 'Detail Tagihan',
             'package' => $package,
             'data'    => $students,
+            'unpaidMonths' => $unpaidMonths
         ]);
     }
 

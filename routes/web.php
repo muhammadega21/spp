@@ -5,6 +5,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentClassController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\WaliController;
@@ -62,5 +63,11 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
         Route::post('/payments/{id}/reject', 'reject')->name('payment.reject');
 
         Route::post('/payments/{id}/pay/once', 'payOnce')->name('payment.pay.once');
+        Route::post('/payments/{id}/pay/month', 'payMonth')->name('payment.pay.month');
+    });
+
+    Route::controller(ProfileController::class)->group(function () {
+        Route::get('/profile', 'index')->name('profile.index');
+        Route::put('/profile', 'update')->name('profile.update');
     });
 });

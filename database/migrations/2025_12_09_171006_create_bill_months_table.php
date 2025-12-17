@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('bill_package_id')->constrained('bill_packages')->onDelete('cascade');
             $table->unsignedTinyInteger('month')->nullable();
-            $table->enum('status', ['unpaid', 'paid'])->default('unpaid');
+            $table->enum('status', ['unpaid', 'pending', 'paid'])->default('unpaid');
             $table->foreignId('student_id')->constrained('students')->onDelete('cascade');
             $table->timestamps();
         });
