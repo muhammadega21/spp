@@ -10,6 +10,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>NIS</th>
                         <th>Nama Siswa</th>
                         <th>Kelas</th>
                         <th>Nama Wali Murid</th>
@@ -21,6 +22,7 @@
                     @forelse ($data as $item)
                         <tr>
                             <th>{{ $loop->iteration + $data->firstItem() - 1 }}</th>
+                            <td>{{ $item->nis }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->class->name }}</td>
                             <td>{{ $item->guardian->name }}</td>
@@ -39,6 +41,14 @@
 
                         <x-modals.modal id="modal_edit_student_{{ $item->id }}" title="Edit Kelas"
                             action="{{ route('dashboard.student.update', $item->id) }}" method="PUT" :inputs="[
+                                [
+                                    'id' => 'nis',
+                                    'label' => 'NIS',
+                                    'type' => 'text',
+                                    'name' => 'nis',
+                                    'value' => old('nis', $item->nis),
+                                    'isRequired' => true,
+                                ],
                                 [
                                     'id' => 'student_name',
                                     'label' => 'Nama Siswa',
@@ -88,6 +98,14 @@
 
     <x-modals.modal id="modal_add_student" title="Tambah Siswa" action="{{ route('dashboard.student.store') }}"
         method="POST" :inputs="[
+            [
+                'id' => 'nis',
+                'label' => 'NIS',
+                'type' => 'text',
+                'name' => 'nis',
+                'value' => old('nis'),
+                'isRequired' => true,
+            ],
             [
                 'id' => 'guardian_name',
                 'label' => 'Nama Wali Murid',

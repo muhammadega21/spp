@@ -22,6 +22,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>NIS</th>
                             <th>Nama Siswa</th>
                             <th>Kelas</th>
                             <th>Status</th>
@@ -38,6 +39,8 @@
 
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
+
+                                <td>{{ $student->nis }}</td>
 
                                 <td>{{ $student->name }}</td>
 

@@ -53,15 +53,17 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Student::create([
+            'nis' => '00123456',
             'guardian_id' => 2,
             'class_id' => 1,
             'name' => 'Muhammad Ega Dermawan',
             'year' => 2025
         ]);
         Student::create([
+            'nis' => '00123457',
             'guardian_id' => 3,
             'class_id' => 2,
-            'name' => 'Jokowi',
+            'name' => 'Budi Santoso',
             'year' => 2024
         ]);
     }

@@ -23,6 +23,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>NIS</th>
                         <th>Siswa</th>
                         <th>Kelas</th>
                         <th>Tagihan</th>
@@ -37,6 +38,7 @@
                     @forelse ($data as $item)
                         <tr>
                             <th>{{ $loop->iteration + $data->firstItem() - 1 }}</th>
+                            <td>{{ $item->student->nis }}</td>
                             <td>{{ $item->student->name }}</td>
                             <td>{{ $item->student->class->name }}</td>
                             <td>{{ $item->package->title }}</td>

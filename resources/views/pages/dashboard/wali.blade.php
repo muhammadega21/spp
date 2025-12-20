@@ -3,6 +3,10 @@
         <h2 class="text-lg font-semibold text-gray-700">Data Anak</h2>
         <table class="leading-7 mt-3">
             <tr>
+                <td class="pe-2">NIS</td>
+                <td>: {{ auth()->user()->students->first()->nis }}</td>
+            </tr>
+            <tr>
                 <td class="pe-2">Nama</td>
                 <td>: {{ auth()->user()->students->first()->name }}</td>
             </tr>

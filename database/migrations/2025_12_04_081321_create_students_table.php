@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('students', function (Blueprint $table) {
             $table->id();
+            $table->string('nis')->unique(); // Nomor Induk Siswa
             $table->foreignId('guardian_id')->constrained('users')->onDelete('cascade'); // wali murid
             $table->foreignId('class_id')->constrained('student_classes')->onDelete('cascade');
             $table->year('year')->default(now()->year);

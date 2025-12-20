@@ -23,6 +23,7 @@ class StudentController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'nis' => 'required|unique:students,nis',
             'student_name' => 'required',
             'class_id' => 'required',
             'guardian_name' => 'required',
@@ -30,6 +31,8 @@ class StudentController extends Controller
             'password' => 'required|min:4',
             'year' => 'numeric'
         ], [
+            'nis.required' => 'NIS harus diisi.',
+            'nis.unique' => 'NIS sudah ada.',
             'student_name.required' => 'Nama siswa harus diisi.',
             'class_id.required' => 'Kelas harus diisi.',
             'guardian_name.required' => 'Nama wali harus diisi.',
@@ -48,6 +51,7 @@ class StudentController extends Controller
         ]);
 
         $student = Student::create([
+            'nis' => $request->nis,
             'name' => $request->student_name,
             'class_id' => $request->class_id,
             'guardian_id' => $guardian->id,
@@ -78,6 +82,7 @@ class StudentController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'nis' => 'required|unique:students,nis,' . $id,
             'student_name' => 'required',
             'guardian_name' => 'required',
             'class_id' => 'required',
@@ -92,6 +97,7 @@ class StudentController extends Controller
             'name' => $request->guardian_name,
         ]);
         $student->update([
+            'nis' => $request->nis,
             'name' => $request->student_name,
             'class_id' => $request->class_id,
         ]);

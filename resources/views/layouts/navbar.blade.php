@@ -8,5 +8,14 @@
             <path d="M14 10l2 2l-2 2"></path>
         </svg>
     </label>
-    <div class="px-4 text-xl font-bold">E-SPP</div>
+    <div class="px-4 w-full flex justify-between items-center">
+        <div class=" text-xl font-bold">E-SPP</div>
+        @can('wali')
+            <a href="https://wa.me/6289532078000" target="_blank"
+                class="flex items-center gap-x-1 text-sm bg-slate-200 px-3 py-1.5 rounded-md text-green-700 hover:bg-slate-300 cursor-pointer transition duration-300">
+                <i class="bx bx-phone"></i>
+                <span>Hubungi Admin</span>
+            </a>
+        @endcan
+    </div>
 </nav>
