@@ -64,9 +64,9 @@
             const text = document.getElementById('bank_account_text_{{ $id }}');
 
             const accounts = {
-                bca: 'BCA - 1234567890 a.n UIN Sjech M. Djamil Djambek Bukittinggi',
-                btn: 'BTN - 0987654321 a.n UIN Sjech M. Djamil Djambek Bukittinggi',
-                mandiri: 'Mandiri - 1122334455 a.n UIN Sjech M. Djamil Djambek Bukittinggi',
+                bca: 'BCA - 1234567890 a.n Muhammad Ega Dermawan',
+                btn: 'BTN - 0987654321 a.n Muhammad Ega Dermawan',
+                mandiri: 'Mandiri - 1122334455 a.n Muhammad Ega Dermawan',
             };
 
             if (accounts[bank]) {
