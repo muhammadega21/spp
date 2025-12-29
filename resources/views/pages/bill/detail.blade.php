@@ -27,7 +27,7 @@
                         @endphp
 
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $loop->iteration + $students->firstItem() - 1 }}</td>
                             <td>{{ $student->nis }}</td>
                             <td>{{ $student->name }}</td>
                             <td>{{ $student->class->name }}</td>

@@ -38,7 +38,7 @@
 
 
                             <tr>
-                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $loop->iteration + $data->firstItem() - 1 }}</td>
 
                                 <td>{{ $student->nis }}</td>
 
@@ -194,6 +194,8 @@
             @endif
         </div>
     </div>
-
+    <div class="mt-4">
+        {{ $data->links() }}
+    </div>
     <x-alert />
 @endsection

@@ -112,7 +112,7 @@ class BillController extends Controller
                             ->orderBy('month');
                     }]);
                 })
-                ->get();
+                ->paginate(10);
         } else {
             $students = Student::with(['class'])->where('year', $package->year)
                 ->when($package->type === 'monthly', function ($query) use ($id) {
@@ -121,7 +121,7 @@ class BillController extends Controller
                             ->orderBy('month');
                     }]);
                 })
-                ->get();
+                ->paginate(10);
         }
 
 

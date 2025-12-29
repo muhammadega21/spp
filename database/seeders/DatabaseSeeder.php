@@ -17,8 +17,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         // User::factory()->create([
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
@@ -31,40 +29,41 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin'
         ]);
 
-        User::create([
-            'name' => 'Budi',
-            'email' => 'budi@gmail.com',
-            'password' => bcrypt('password'),
-            'role' => 'wali'
-        ]);
-        User::create([
-            'name' => 'anto',
-            'email' => 'anto@gmail.com',
-            'password' => bcrypt('password'),
-            'role' => 'wali'
-        ]);
         StudentClass::create([
             'name' => 'X-RPL 1',
-            'Competency' => 'Rekayasa Perangkat Lunak',
+            'competency' => 'Rekayasa Perangkat Lunak'
         ]);
         StudentClass::create([
             'name' => 'X-RPL 2',
-            'Competency' => 'Rekayasa Perangkat Lunak',
+            'competency' => 'Rekayasa Perangkat Lunak'
+        ]);
+        StudentClass::create([
+            'name' => 'XI-RPL 1',
+            'competency' => 'Rekayasa Perangkat Lunak'
+        ]);
+        StudentClass::create([
+            'name' => 'XI-RPL 2',
+            'competency' => 'Rekayasa Perangkat Lunak'
+        ]);
+        StudentClass::create([
+            'name' => 'XII-RPL 1',
+            'competency' => 'Rekayasa Perangkat Lunak'
+        ]);
+        StudentClass::create([
+            'name' => 'XII-RPL 2',
+            'competency' => 'Rekayasa Perangkat Lunak'
         ]);
 
-        Student::create([
-            'nis' => '00123456',
-            'guardian_id' => 2,
-            'class_id' => 1,
-            'name' => 'Andi Saputra',
-            'year' => 2025
-        ]);
-        Student::create([
-            'nis' => '00123457',
-            'guardian_id' => 3,
-            'class_id' => 2,
-            'name' => 'Budi Santoso',
-            'year' => 2024
-        ]);
+        User::factory(99)->create();
+
+        $guardianId = 2;
+        Student::factory(99)
+            ->make()
+            ->each(function ($student) use (&$guardianId) {
+                $student->guardian_id = $guardianId;
+                $student->save();
+
+                $guardianId++;
+            });
     }
 }
